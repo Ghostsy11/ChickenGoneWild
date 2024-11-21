@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -11,8 +12,13 @@ TagManager:
   - 
   - Water
   - UI
+<<<<<<< HEAD
+  - PostProcessing
+  - 
+=======
   - Climable
   - Ground
+>>>>>>> 1bd7fc9fbcc77657d198e76aa2b36ac1412d4c14
   - 
   - 
   - 
