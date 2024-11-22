@@ -59,6 +59,7 @@ public class SC_PlayerController : MonoBehaviour
     private void Awake()
     {
         stepRayUpper.transform.position = new Vector3(stepRayUpper.transform.position.x, stepHeight, stepRayUpper.transform.position.z);
+        playerInput = GetComponent<PlayerInputActions>();
     }
     // Start is called before the first frame update
     void Start()
