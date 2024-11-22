@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 5500245038544324802}
   - component: {fileID: 6024657148538572415}
   - component: {fileID: 6542563443164284234}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -376,7 +376,7 @@ MonoBehaviour:
   jump: {fileID: 1140193202871193105, guid: 21dff678aa5e4bb41990b23777ea35e5, type: 3}
   attack: {fileID: -1897681322588190276, guid: 21dff678aa5e4bb41990b23777ea35e5, type: 3}
   playerState: 2
-  searchRadius: 1
+  searchRadius: 0.5
   climbSearchPoint: {fileID: 8365483641979444433}
   climableMask:
     serializedVersion: 2
@@ -386,7 +386,7 @@ MonoBehaviour:
   currentStep: 0
   groundMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 8
   stepRayUpper: {fileID: 9155827145240160210}
   stepRayLower: {fileID: 3679964054840258504}
   stepHeight: 0.3
@@ -410,7 +410,7 @@ Rigidbody:
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -431,7 +431,7 @@ BoxCollider:
   m_Material: {fileID: 13400000, guid: 4babf10469d64fc4c928fe3e9b836d9f, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0

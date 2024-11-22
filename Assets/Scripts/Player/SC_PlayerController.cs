@@ -27,7 +27,7 @@ public class SC_PlayerController : MonoBehaviour
 
     [Header("Climbing")]
     [Tooltip("Radius in which player checks for climable surface from the climbSearchPoint")]
-    [SerializeField] private int searchRadius;
+    [SerializeField] private float searchRadius;
     [SerializeField] private Transform climbSearchPoint;
     [SerializeField] private LayerMask climableMask;
 
@@ -36,7 +36,7 @@ public class SC_PlayerController : MonoBehaviour
     [SerializeField] private float maxSpeed = 5;
     private float speed = 0;
     private bool moving = false;
-    [SerializeField] private int steps = 1000;
+    [SerializeField] private int steps;
     [SerializeField] private int currentStep;
     [SerializeField] private LayerMask groundMask;
     private int direction = 0;
@@ -119,6 +119,11 @@ public class SC_PlayerController : MonoBehaviour
             //set position of arm for ik on the point
             //for now place player beneath surface
             rb.position = new Vector3(rb.position.x, pos.y - baseCollider.bounds.size.y, rb.position.z);
+        }
+        else
+        {
+            playerState = PlayerState.jumping;
+            rb.useGravity = true;
         }
     }
 
