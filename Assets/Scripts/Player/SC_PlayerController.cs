@@ -34,7 +34,7 @@ public class SC_PlayerController : MonoBehaviour
     [SerializeField] private int currentStep;
     [SerializeField] private LayerMask groundMask;
     private int direction = 0;
-    [Tooltip("-1 left, 0 no movement, 1 down")]
+    [Tooltip("-1 left, 0 no movement, 1 right")]
     private int xMove;
     [Tooltip("-1 down, 0 no movement, 1 up")]
     private int yMove;
@@ -54,12 +54,16 @@ public class SC_PlayerController : MonoBehaviour
     {
         stepRayUpper.transform.position = new Vector3(stepRayUpper.transform.position.x, stepHeight, stepRayUpper.transform.position.z);
     }
+    public void AssignPlayerInputActions()
+    {
+        playerInput = new PlayerInputActions();
+    }
     // Start is called before the first frame update
     private void Start()
     {
-        //playerInput = new PlayerInputActions();
         rb = GetComponent<Rigidbody>();
         playerModel = transform.GetChild(0).gameObject;
+        EnableOrDisable(playerInput.Player.Move, false);
     }
     private void FixedUpdate()
     {
@@ -85,26 +89,32 @@ public class SC_PlayerController : MonoBehaviour
         {
             Climb();
         }
+        else
+        {
+            rb.useGravity = true;
+        }
     }
-    public void EnableOrDisable(InputActionReference action, bool enable)
+    public void EnableOrDisable(InputAction action, bool enable)
     {
         if (enable)
         {
-            EnableControls(action);
+            action.Enable();
+            //EnableControls(action);
         }
         else
         {
-            DisableControls(action);
+            action.Disable();
+            //DisableControls(action);
         }
     }
-    private void EnableControls(InputActionReference action)
-    {
-        action.action.Enable();
-    }
-    private void DisableControls(InputActionReference action)
-    {
-        action.action.Disable();
-    }
+    //private void EnableControls(InputAction action)
+    //{
+    //    action.Enable();
+    //}
+    //private void DisableControls(InputAction action)
+    //{
+    //    action.Disable();
+    //}
     private void Climb()
     {
         Vector3 pos = CheckIfNearClimable();
