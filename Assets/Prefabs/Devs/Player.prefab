@@ -380,13 +380,13 @@ MonoBehaviour:
   climbSearchPoint: {fileID: 8365483641979444433}
   climableMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   maxSpeed: 5
   steps: 20
   currentStep: 0
   groundMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   stepRayUpper: {fileID: 9155827145240160210}
   stepRayLower: {fileID: 3679964054840258504}
   stepHeight: 0.3
