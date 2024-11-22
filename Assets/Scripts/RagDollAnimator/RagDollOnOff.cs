@@ -16,9 +16,15 @@ public class RagDollOnOff : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody>();
         playerAnimator = GetComponent<Animator>();
         SetRagDollParts();
-        StartCoroutine(TestRagDoll());
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            StartCoroutine(TestRagDoll());
+        }
+    }
 
     private void SetRagDollParts()
     {

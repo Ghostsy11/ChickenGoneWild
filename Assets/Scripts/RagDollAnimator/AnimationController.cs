@@ -15,6 +15,18 @@ public class AnimationController : MonoBehaviour
     [SerializeField] const string AnimationHang = "Hang";
 
 
+
+    [SerializeField] SFX sowrdAudio;
+    [SerializeField] VFX sowrdEffect;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            PlayerAnimationSwordAttack();
+        }
+    }
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -27,7 +39,12 @@ public class AnimationController : MonoBehaviour
 
     public void PlayerAnimationSwordAttack()
     {
+
         animator.SetTrigger(AnimationSwordAttack);
+        sowrdAudio.PlayThisSound();
+        sowrdEffect.PlayVFX(transform);
+
+        Debug.Log("test");
 
     }
 
