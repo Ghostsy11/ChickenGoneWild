@@ -1,14 +1,8 @@
 using System;
 using System.Collections;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Runtime.CompilerServices;
-using System.Threading;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering.VirtualTexturing;
-using UnityEngine.UIElements;
+using Unity;
 public class SC_PlayerController : MonoBehaviour
 {
     private Rigidbody rb;
@@ -27,7 +21,7 @@ public class SC_PlayerController : MonoBehaviour
 
     [Header("Climbing")]
     [Tooltip("Radius in which player checks for climable surface from the climbSearchPoint")]
-    [SerializeField] private int searchRadius;
+    [SerializeField] private float searchRadius;
     [SerializeField] private Transform climbSearchPoint;
     [SerializeField] private LayerMask climableMask;
 
@@ -61,7 +55,7 @@ public class SC_PlayerController : MonoBehaviour
         stepRayUpper.transform.position = new Vector3(stepRayUpper.transform.position.x, stepHeight, stepRayUpper.transform.position.z);
     }
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         //playerInput = new PlayerInputActions();
         rb = GetComponent<Rigidbody>();
@@ -119,6 +113,11 @@ public class SC_PlayerController : MonoBehaviour
             //set position of arm for ik on the point
             //for now place player beneath surface
             rb.position = new Vector3(rb.position.x, pos.y - baseCollider.bounds.size.y, rb.position.z);
+        }
+        else
+        {
+            playerState = PlayerState.jumping;
+            rb.useGravity = true;
         }
     }
 
