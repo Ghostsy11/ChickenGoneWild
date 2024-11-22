@@ -50,19 +50,11 @@ public class SC_PlayerInputManager : MonoBehaviour
     {
         players.Add(player.gameObject);
         player.transform.position = spawnPoints[players.Count - 1].position;
-        Debug.Log(player.gameObject);
-        SC_PlayerController src = player.gameObject.GetComponent<SC_PlayerController>();
-        src.AssignPlayerInputActions();
-        Debug.Log(src.playerInput);
-        List<InputAction> actions = new()
-        {
-            src.playerInput.Player.Move,
-            src.playerInput.Player.Attack
-        };
-        EnableDisablePlayerControlAction(src, false, actions);
+        SC_PlayerController playerScr = player.gameObject.GetComponent<SC_PlayerController>();
+        playerScr.DisableControls(playerScr.move);
+        playerScr.DisableControls(playerScr.attack);
         if (players.Count <= 1)
         {
-            inputActions = src.playerInput;
         }
     }
     public void RemovePlayer(PlayerInput player)
@@ -74,18 +66,18 @@ public class SC_PlayerInputManager : MonoBehaviour
         players.Remove(player.gameObject);
         Destroy(player.gameObject);
     }
-    public void EnableDisableAllPlayerControlAction(bool enable, List<InputAction> inputActions)
-    {
-        foreach (GameObject player in players)
-        {
-            EnableDisablePlayerControlAction(player.GetComponent<SC_PlayerController>(), enable, inputActions);
-        }
-    }
-    public void EnableDisablePlayerControlAction(SC_PlayerController playerSrc, bool enable, List<InputAction> inputActions)
-    {
-        for (int i = 0; i < inputActions.Count; i++)
-        {
-            playerSrc.EnableOrDisable(inputActions[i], enable);
-        }
-    }
+    //public void EnableDisableAllPlayerControlAction(bool enable, List<InputAction> inputActions)
+    //{
+    //    foreach (GameObject player in players)
+    //    {
+    //        EnableDisablePlayerControlAction(player.GetComponent<SC_PlayerController>(), enable, inputActions);
+    //    }
+    //}
+    //public void EnableDisablePlayerControlAction(SC_PlayerController playerSrc, bool enable, List<InputAction> inputActions)
+    //{
+    //    for (int i = 0; i < inputActions.Count; i++)
+    //    {
+    //        playerSrc.EnableOrDisable(inputActions[i], enable);
+    //    }
+    //}
 }
