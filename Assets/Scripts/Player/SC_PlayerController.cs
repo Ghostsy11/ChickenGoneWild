@@ -1,31 +1,30 @@
 using System;
 using System.Collections;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
+using Unity;
 public class SC_PlayerController : MonoBehaviour
 {
     private Rigidbody rb;
+    private GameObject playerModel;
     [SerializeField] private Collider baseCollider;
     [SerializeField] private Collider jumpCollider;
     [SerializeField] private Collider dodgeCollider;
     //public PlayerInputActions playerInput;
     [Header("Controls")]
+    public PlayerInputActions playerInput;
     [SerializeField]
-    private InputActionReference move, jump, attack;
+    public InputActionReference move, jump, attack;
 
-    private enum PlayerState { grounded, jumping, double_jumping, hanging, dodging };
+    private enum PlayerState { grounded, jumping, double_jumping, climbing, dodging };
     [SerializeField] private PlayerState playerState = PlayerState.double_jumping;
 
     [Header("Climbing")]
-    [Tooltip("Radius in which player checks for climable surface")]
-    [SerializeField] private int searchRadius;
+    [Tooltip("Radius in which player checks for climable surface from the climbSearchPoint")]
+    [SerializeField] private float searchRadius;
+    [SerializeField] private Transform climbSearchPoint;
     [SerializeField] private LayerMask climableMask;
-    [SerializeField] private float checkDistance;
 
-    [SerializeField] private LayerMask groundMask;
 
     [Header("Run")]
     [SerializeField] private float maxSpeed = 5;
@@ -33,12 +32,20 @@ public class SC_PlayerController : MonoBehaviour
     private bool moving = false;
     [SerializeField] private int steps = 1000;
     [SerializeField] private int currentStep;
+    [SerializeField] private LayerMask groundMask;
+    private int direction = 0;
+    [Tooltip("-1 left, 0 no movement, 1 right")]
+    private int xMove;
+    [Tooltip("-1 down, 0 no movement, 1 up")]
+    private int yMove;
 
     [Header("Ramp")]
     [SerializeField] GameObject stepRayUpper;
     [SerializeField] GameObject stepRayLower;
     [SerializeField] float stepHeight = 0.3f;
     [SerializeField] float stepSmooth = 2f;
+    [SerializeField] float rampCheckDistance = 0.5f;
+    private float surfaceAngle = 0;
 
     [Header("Jump")]
     [SerializeField] private float jumpSpeed = 10;
@@ -46,20 +53,21 @@ public class SC_PlayerController : MonoBehaviour
     private void Awake()
     {
         stepRayUpper.transform.position = new Vector3(stepRayUpper.transform.position.x, stepHeight, stepRayUpper.transform.position.z);
+        playerInput = new PlayerInputActions();
     }
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        //playerInput = new PlayerInputActions();
         rb = GetComponent<Rigidbody>();
+        playerModel = transform.GetChild(0).gameObject;
     }
     private void FixedUpdate()
     {
-        CheckIfNearClimable();
         if (moving)
         {
-            MoveHorizontal(move.action.ReadValue<Vector2>().x);
-            MoveVertical(move.action.ReadValue<Vector2>().y);
+            MoveHorizontal(xMove);
+            MoveVertical(yMove);
+            StepClimb();
         }
         else if (rb.velocity.x > 0 || rb.velocity.x < 0)
         {
@@ -69,8 +77,66 @@ public class SC_PlayerController : MonoBehaviour
                 currentStep = 0;
             }
         }
-        //StepClimb();
+        else
+        {
+            currentStep = 0;
+        }
+        if (playerState == PlayerState.climbing)
+        {
+            Climb();
+        }
+        else
+        {
+            rb.useGravity = true;
+        }
     }
+    private void OnEnable()
+    {
+        SC_EventManager.instance.onEnableControls += EnableControls;
+        SC_EventManager.instance.onDisableControls += DisableControls;
+    }
+    private void OnDisable()
+    {
+        SC_EventManager.instance.onEnableControls -= EnableControls;
+        SC_EventManager.instance.onDisableControls -= DisableControls;
+    }
+    //public void EnableOrDisable(InputAction action, bool enable)
+    //{
+    //    if (enable)
+    //    {
+    //        action.Enable();
+    //        //EnableControls(action);
+    //    }
+    //    else
+    //    {
+    //        action.Disable();
+    //        //DisableControls(action);
+    //    }
+    //}
+    public void EnableControls(InputAction action)
+    {
+        action.Enable();
+    }
+    public void DisableControls(InputAction action)
+    {
+        action.Disable();
+    }
+    private void Climb()
+    {
+        Vector3 pos = CheckIfNearClimable();
+        if (pos != Vector3.zero)
+        {
+            //set position of arm for ik on the point
+            //for now place player beneath surface
+            rb.position = new Vector3(rb.position.x, pos.y - baseCollider.bounds.size.y, rb.position.z);
+        }
+        else
+        {
+            playerState = PlayerState.jumping;
+            rb.useGravity = true;
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if ((groundMask.value & 1 << collision.gameObject.layer) == 1 << collision.gameObject.layer)
@@ -86,40 +152,64 @@ public class SC_PlayerController : MonoBehaviour
             playerState = PlayerState.jumping;
         }
     }
-    private void CheckIfNearClimable()
+    private Vector3 CheckIfNearClimable()
     {
-        Ray ray = new Ray(transform.position, transform.up);
-        Debug.DrawLine(ray.origin, ray.direction * 10, Color.red);
-        RaycastHit hitData;
-        Physics.Raycast(ray, out hitData);
+        Collider[] hitColliders = Physics.OverlapSphere(climbSearchPoint.position, searchRadius, climableMask);
+        if (hitColliders.Length > 0)
+        {
+            float dist = float.PositiveInfinity;
+            int index = 0;
+            for (int i = 0; i < hitColliders.Length; i++)
+            {
+                float d = Vector3.Distance(transform.position, hitColliders[i].transform.position);
+                if (dist > d)
+                {
+                    dist = d;
+                    index = i;
+                }
+            }
+            return hitColliders[index].transform.position;
+            
+        }
+        return Vector3.zero;
     }
     public void JumpAction(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
-            if (playerState == PlayerState.double_jumping) return;
+        if (context.performed && jump.action.enabled)
+        {          
+            Vector3 climbPos = CheckIfNearClimable();
             if (playerState == PlayerState.grounded)
             {
                 playerState = PlayerState.jumping;
                 Jump();
             }
-            else if (playerState == PlayerState.jumping)
+            else if (playerState == PlayerState.jumping || playerState == PlayerState.double_jumping)
             {
-                playerState = PlayerState.double_jumping;
-                Jump();
+                if (climbPos != Vector3.zero)
+                {
+                    playerState = PlayerState.climbing;
+                    rb.useGravity = false;
+                }
+                else if(playerState == PlayerState.jumping)
+                {
+                    playerState = PlayerState.double_jumping;
+                    Jump();
+                }
             }
-            else if (playerState == PlayerState.hanging)
-            {
-                HangJump();
+            else if (playerState == PlayerState.climbing){
+                playerState = PlayerState.jumping;
+                rb.useGravity = true;
+                ClimbJump(climbPos);
             }
         }
     }
 
-    private void HangJump()
+    private void ClimbJump(Vector3 pos)
     {
-
+        Vector3 dir = rb.transform.position - pos;
+        dir = dir.normalized;
+        rb.AddForce(-dir * jumpSpeed);
     }
-
     private void Jump()
     {
         rb.velocity = new Vector3(rb.velocity.x, jumpSpeed, rb.velocity.z);
@@ -127,10 +217,17 @@ public class SC_PlayerController : MonoBehaviour
 
     public void MoveAction(InputAction.CallbackContext context)
     {
-        moving = true;
-        if (context.canceled)
+        if (context.performed && move.action.enabled)
+        {
+            moving = true;
+            xMove = (int)context.action.ReadValue<Vector2>().x;
+            yMove = (int)context.action.ReadValue<Vector2>().y;
+        }
+        else if (context.canceled)
         {
             moving = false;
+            xMove = 0;
+            yMove = 0;
         }
     }
 
@@ -142,7 +239,10 @@ public class SC_PlayerController : MonoBehaviour
     }
     private void MoveVertical(float y)
     {
-
+        if (playerState == PlayerState.climbing)
+        {
+            //rb.velocity = new Vector3(rb.velocity.x, climbSpeed, rb.velocity.z);
+        }
     }
     public void AttackAction(InputAction.CallbackContext context)
     {
@@ -150,13 +250,20 @@ public class SC_PlayerController : MonoBehaviour
     }
     private float SpeedCalculation(int dir)
     {
-        float X = speed;
-        if (speed < maxSpeed || speed > -maxSpeed)
+        if (dir != 0)
         {
-            if (dir > 0 && rb.velocity.x < 0 || dir < 0 && rb.velocity.x > 0)
+            playerModel.transform.rotation = Quaternion.Euler(0, dir * 90, 0);
+            if (dir > direction || dir < direction)
             {
                 currentStep = 0;
             }
+            direction = dir;
+        }
+        //https://solhsa.com/interpolation/ for the formula
+        float X = speed;
+        if (speed < maxSpeed || speed > -maxSpeed)
+        {
+            
             float i = currentStep;
             float N = steps;
             float B = 0;
@@ -176,18 +283,16 @@ public class SC_PlayerController : MonoBehaviour
         int step = steps / (int)(maxSpeed / Math.Abs(rb.velocity.x));
         return step;
     }
-    //private void StepClimb()
-    //{
-    //    RaycastHit hitLower;
-    //    if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(Vector3.right), out hitLower, 0.1f))
-    //    {
-    //        Debug.DrawLine(stepRayLower.transform.position, hitLower.point, Color.red);
-    //        Debug.Log(hitLower.point);
-    //        RaycastHit hitUpper;
-    //        if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(Vector3.right), out hitUpper, 0.2f))
-    //        {
-    //            rb.position += new Vector3(0f, stepSmooth, 0f);
-    //        }
-    //    }
-    //}
+    private void StepClimb()
+    {
+        RaycastHit hitLower;
+        if (Physics.Raycast(stepRayLower.transform.position, playerModel.transform.TransformDirection(Vector3.forward), out hitLower, rampCheckDistance, groundMask))
+        {
+            RaycastHit hitUpper;
+            if (!Physics.Raycast(stepRayUpper.transform.position, playerModel.transform.TransformDirection(Vector3.forward), out hitUpper, rampCheckDistance * 2, groundMask))
+            {
+                rb.position += new Vector3(0f, stepSmooth, 0f);
+            }
+        }
+    }
 }

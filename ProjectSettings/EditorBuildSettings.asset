@@ -4,13 +4,5 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: 4235e8f297c960d4e97a772effb6a12c
-  - enabled: 1
-    path: Assets/Scenes/AbdulRahman.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  m_configObjects:
-    com.unity.input.settings: {fileID: 11400000, guid: a66c9e18b3a5c6a4ebff55f1ed994f6b, type: 2}
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: c63bb250702238441ae34cf04191c2d7, type: 3}
+  m_Scenes: []
+  m_configObjects: {}
