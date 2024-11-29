@@ -288,6 +288,33 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""52c59e1a-b8ab-4da8-a1b0-97cfbc7eb39e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Join"",
+                    ""type"": ""Button"",
+                    ""id"": ""45678383-b54b-44da-97a1-98e91db78a25"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""6f228cb7-4e44-47ce-9593-70f380911c6f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -371,7 +398,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""7a72f073-c520-4588-b588-9779a4626211"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Keyboard>/enter"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
@@ -382,11 +409,77 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""9b45129c-7469-4fca-8d64-0e92f1824566"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
                     ""action"": ""Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e9c7f75f-da8e-4328-8142-76b98f968f2e"",
+                    ""path"": ""<Keyboard>/backspace"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""70d36c90-1f1e-4589-9a50-747cc73fbbda"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c5ea266d-c1c2-4d8e-a0e2-81986d4627fb"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Join"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e749e6f2-3344-4532-b9b4-370d2a007710"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Join"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cd2a59d5-a4f1-47ee-8bb4-92bbee40018c"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""77048956-894a-4143-86d7-3c0c3d955f6e"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -981,6 +1074,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_PlayerCustomization = asset.FindActionMap("PlayerCustomization", throwIfNotFound: true);
         m_PlayerCustomization_Select = m_PlayerCustomization.FindAction("Select", throwIfNotFound: true);
         m_PlayerCustomization_Confirm = m_PlayerCustomization.FindAction("Confirm", throwIfNotFound: true);
+        m_PlayerCustomization_Cancel = m_PlayerCustomization.FindAction("Cancel", throwIfNotFound: true);
+        m_PlayerCustomization_Join = m_PlayerCustomization.FindAction("Join", throwIfNotFound: true);
+        m_PlayerCustomization_Jump = m_PlayerCustomization.FindAction("Jump", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1125,12 +1221,18 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private List<IPlayerCustomizationActions> m_PlayerCustomizationActionsCallbackInterfaces = new List<IPlayerCustomizationActions>();
     private readonly InputAction m_PlayerCustomization_Select;
     private readonly InputAction m_PlayerCustomization_Confirm;
+    private readonly InputAction m_PlayerCustomization_Cancel;
+    private readonly InputAction m_PlayerCustomization_Join;
+    private readonly InputAction m_PlayerCustomization_Jump;
     public struct PlayerCustomizationActions
     {
         private @PlayerInputActions m_Wrapper;
         public PlayerCustomizationActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Select => m_Wrapper.m_PlayerCustomization_Select;
         public InputAction @Confirm => m_Wrapper.m_PlayerCustomization_Confirm;
+        public InputAction @Cancel => m_Wrapper.m_PlayerCustomization_Cancel;
+        public InputAction @Join => m_Wrapper.m_PlayerCustomization_Join;
+        public InputAction @Jump => m_Wrapper.m_PlayerCustomization_Jump;
         public InputActionMap Get() { return m_Wrapper.m_PlayerCustomization; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1146,6 +1248,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Confirm.started += instance.OnConfirm;
             @Confirm.performed += instance.OnConfirm;
             @Confirm.canceled += instance.OnConfirm;
+            @Cancel.started += instance.OnCancel;
+            @Cancel.performed += instance.OnCancel;
+            @Cancel.canceled += instance.OnCancel;
+            @Join.started += instance.OnJoin;
+            @Join.performed += instance.OnJoin;
+            @Join.canceled += instance.OnJoin;
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
         }
 
         private void UnregisterCallbacks(IPlayerCustomizationActions instance)
@@ -1156,6 +1267,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Confirm.started -= instance.OnConfirm;
             @Confirm.performed -= instance.OnConfirm;
             @Confirm.canceled -= instance.OnConfirm;
+            @Cancel.started -= instance.OnCancel;
+            @Cancel.performed -= instance.OnCancel;
+            @Cancel.canceled -= instance.OnCancel;
+            @Join.started -= instance.OnJoin;
+            @Join.performed -= instance.OnJoin;
+            @Join.canceled -= instance.OnJoin;
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
         }
 
         public void RemoveCallbacks(IPlayerCustomizationActions instance)
@@ -1346,6 +1466,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     {
         void OnSelect(InputAction.CallbackContext context);
         void OnConfirm(InputAction.CallbackContext context);
+        void OnCancel(InputAction.CallbackContext context);
+        void OnJoin(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

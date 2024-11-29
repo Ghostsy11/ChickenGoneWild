@@ -139,7 +139,6 @@ public class SC_PlayerController : MonoBehaviour
     }
     public void JumpAction(InputAction.CallbackContext context)
     {
-        Debug.Log("Jumping");
         if (context.performed)
         {
             Vector3 climbPos = CheckIfNearClimable();
