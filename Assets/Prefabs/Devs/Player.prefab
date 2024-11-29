@@ -215,6 +215,7 @@ GameObject:
   - component: {fileID: 5500245038544324802}
   - component: {fileID: 6024657148538572415}
   - component: {fileID: 6542563443164284234}
+  - component: {fileID: -5820559910288488975}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -352,6 +353,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 40304dcf-92bf-4925-bfb4-f357dc81ee80
     m_ActionName: Player/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2c955407-a14e-4b9a-b2a9-68ef4d8836da
+    m_ActionName: PlayerCustomization/Select[/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fa47be5f-669a-4686-a4c0-0382bff9abfc
+    m_ActionName: PlayerCustomization/Confirm[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -380,13 +389,13 @@ MonoBehaviour:
   climbSearchPoint: {fileID: 8365483641979444433}
   climableMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   maxSpeed: 5
   steps: 20
   currentStep: 0
   groundMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   stepRayUpper: {fileID: 9155827145240160210}
   stepRayLower: {fileID: 3679964054840258504}
   stepHeight: 0.3
@@ -484,6 +493,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-5820559910288488975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7053088876646803111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce69f7c1a6150b24f9f11aacd3da4408, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8550643895515007189
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,11 +6,19 @@ using UnityEngine.InputSystem;
 public class SC_EventManager : MonoBehaviour
 {
     public static SC_EventManager instance;
-    public delegate void OnEnableControls(InputAction action);
-    public OnEnableControls onEnableControls;
 
-    public delegate void OnDisableControls(InputAction action);
-    public OnDisableControls onDisableControls;
+    public delegate void OnCustomizeLoaded();
+    public static event OnCustomizeLoaded onCustomizeLoaded;
+
+    public delegate void OnCustomizeDone();
+    public static event OnCustomizeDone onCustomizeDone;
+
+    public delegate void OnGameLoaded();
+    public static event OnGameLoaded onGameLoaded;
+
+    public delegate void OnGameDone();
+    public static event OnGameDone onGameDone;
+
 
     private void Awake()
     {
@@ -23,12 +31,24 @@ public class SC_EventManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void EnableControls(InputAction action)
+    private void Start()
     {
-        onEnableControls?.Invoke(action);
+        DontDestroyOnLoad(gameObject);
     }
-    public void DisableControls(InputAction action)
+    public void CustomizeLoaded()
     {
-        onDisableControls?.Invoke(action);
+        onCustomizeLoaded?.Invoke();
+    }
+    public void CustomizeDone()
+    {
+        onCustomizeDone?.Invoke();
+    }
+    public void GameLoaded()
+    {
+        onGameLoaded?.Invoke();
+    }
+    public void GameDone()
+    {
+        onGameDone?.Invoke();
     }
 }
