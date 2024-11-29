@@ -194,7 +194,7 @@ Transform:
   m_GameObject: {fileID: 3679964054840258504}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: -0.5, z: 0.5}
+  m_LocalPosition: {x: -0, y: -0.156, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -422,7 +422,7 @@ MonoBehaviour:
     m_ActionName: PlayerCustomization/Join[/Keyboard/enter,/XInputControllerWindows/buttonNorth]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
+  m_DefaultActionMap: PlayerCustomization
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &903477826079141052
@@ -444,7 +444,7 @@ MonoBehaviour:
   jump: {fileID: 1140193202871193105, guid: 21dff678aa5e4bb41990b23777ea35e5, type: 3}
   attack: {fileID: -1897681322588190276, guid: 21dff678aa5e4bb41990b23777ea35e5, type: 3}
   playerState: 2
-  searchRadius: 0.5
+  searchRadius: 0.75
   climbSearchPoint: {fileID: 8365483641979444433}
   climableMask:
     serializedVersion: 2
@@ -457,11 +457,11 @@ MonoBehaviour:
     m_Bits: 128
   stepRayUpper: {fileID: 9155827145240160210}
   stepRayLower: {fileID: 3679964054840258504}
-  stepHeight: 0.3
-  stepSmooth: 0.05
-  rampCheckDistance: 0.2
+  stepHeight: 0.5
+  stepSmooth: 0.15
+  rampCheckDistance: 0.1
   jumpSpeed: 6
-  edgeJumpTime: 0.1
+  edgeJumpTime: 0.15
 --- !u!54 &4179293377314796984
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -487,7 +487,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 120
   m_CollisionDetection: 1
 --- !u!114 &-839224105742094830
 MonoBehaviour:
@@ -555,9 +555,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 1
+  m_Height: 1.57
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.17, z: 0}
 --- !u!1 &8550643895515007189
 GameObject:
   m_ObjectHideFlags: 0

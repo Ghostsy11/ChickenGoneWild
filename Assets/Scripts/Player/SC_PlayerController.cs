@@ -53,6 +53,7 @@ public class SC_PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        baseCollider = GetComponent<Collider>();
         playerModel = transform.GetChild(0).gameObject;
     }
     private void FixedUpdate()
@@ -138,7 +139,8 @@ public class SC_PlayerController : MonoBehaviour
     }
     public void JumpAction(InputAction.CallbackContext context)
     {
-        if (context.performed && jump.action.enabled)
+        Debug.Log("Jumping");
+        if (context.performed)
         {          
             Vector3 climbPos = CheckIfNearClimable();
             if (playerState == PlayerState.grounded)

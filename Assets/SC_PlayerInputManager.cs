@@ -54,6 +54,7 @@ public class SC_PlayerInputManager : MonoBehaviour
     private void SetPlayerSpawnPositions(PlayerInput player, int spawnPointI)
     {
         player.transform.position = spawnPoints[spawnPointI].position;
+        player.transform.rotation = spawnPoints[spawnPointI].rotation;
     }
     //public void OnPlayerConnected(NetworkPlayer player)
     //{
@@ -63,11 +64,15 @@ public class SC_PlayerInputManager : MonoBehaviour
     {
         playerInputManager.onPlayerJoined += AddPlayer;
         playerInputManager.onPlayerLeft += RemovePlayer;
+
+        SC_EventManager.onGameLoaded += GameLoaded;
     }
     public void OnDisable()
     {
         playerInputManager.onPlayerJoined -= AddPlayer;
         playerInputManager.onPlayerLeft -= RemovePlayer;
+
+        SC_EventManager.onGameLoaded -= GameLoaded;
     }
     public void AddPlayer(PlayerInput player)
     {
@@ -86,6 +91,7 @@ public class SC_PlayerInputManager : MonoBehaviour
         players.Remove(player.gameObject);
         Destroy(player.gameObject);
     }
+
     public void AddReady(bool ready)
     {
         if (ready)
@@ -105,8 +111,9 @@ public class SC_PlayerInputManager : MonoBehaviour
     {
         SC_SceneManager.instance.LoadScene(1);
     }
-    //private void CancelGame()
-    //{
-
-    //}
+    public void GameLoaded()
+    {
+        SetSpawnPoints();
+        MoveAllPlayersToSpawnPoint();
+    }
 }

@@ -35,7 +35,7 @@ public class SC_SceneManager : MonoBehaviour
         }
         else if (level == 0)
         {
-            SC_EventManager.instance.
+            SC_EventManager.instance.CustomizeLoaded();
         }
     }
 }
