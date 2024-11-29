@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
+public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
 {
     public InputActionAsset asset { get; }
     public @PlayerInputActions()
@@ -202,7 +202,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""143bb1cd-cc10-4eca-a2f0-a3664166fe91"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
@@ -213,10 +213,32 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""05f6913d-c316-48b2-a6bb-e225f14c7960"",
-                    ""path"": ""<Keyboard>/enter"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ee3d0cd2-254e-47a7-a8cb-bc94d9658c54"",
+                    ""path"": ""<Joystick>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8255d333-5683-4943-a58a-ccb207ff1dce"",
+                    ""path"": ""<XRController>/{PrimaryAction}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -268,18 +290,18 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Join"",
+                    ""name"": ""Cancel"",
                     ""type"": ""Button"",
-                    ""id"": ""81b8c017-115a-4194-987d-8526ff07c559"",
+                    ""id"": ""52c59e1a-b8ab-4da8-a1b0-97cfbc7eb39e"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Cancel"",
+                    ""name"": ""Join"",
                     ""type"": ""Button"",
-                    ""id"": ""d5f055d6-431b-4667-b651-495e8bd86c92"",
+                    ""id"": ""45678383-b54b-44da-97a1-98e91db78a25"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -288,7 +310,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
-                    ""id"": ""4886372e-094d-43b2-8ab1-96544c3cbc7a"",
+                    ""id"": ""6f228cb7-4e44-47ce-9593-70f380911c6f"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -397,29 +419,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""0d2b507a-5634-410c-b649-5f4971977e06"",
-                    ""path"": ""<Keyboard>/enter"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Join"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3474e9be-a264-4648-a39d-b90094174671"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Join"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""198ee86b-5495-40d7-8c8d-02f1011230de"",
+                    ""id"": ""e9c7f75f-da8e-4328-8142-76b98f968f2e"",
                     ""path"": ""<Keyboard>/backspace"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -430,7 +430,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""3c6f216f-252a-4379-aa8a-d18232980edb"",
+                    ""id"": ""70d36c90-1f1e-4589-9a50-747cc73fbbda"",
                     ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -441,7 +441,29 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d31d5e11-0193-4b67-8989-28145471f930"",
+                    ""id"": ""c5ea266d-c1c2-4d8e-a0e2-81986d4627fb"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Join"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e749e6f2-3344-4532-b9b4-370d2a007710"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Join"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cd2a59d5-a4f1-47ee-8bb4-92bbee40018c"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -452,7 +474,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""9c077169-d4cd-4b2b-abdc-9edc4a515b21"",
+                    ""id"": ""77048956-894a-4143-86d7-3c0c3d955f6e"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1052,8 +1074,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_PlayerCustomization = asset.FindActionMap("PlayerCustomization", throwIfNotFound: true);
         m_PlayerCustomization_Select = m_PlayerCustomization.FindAction("Select", throwIfNotFound: true);
         m_PlayerCustomization_Confirm = m_PlayerCustomization.FindAction("Confirm", throwIfNotFound: true);
-        m_PlayerCustomization_Join = m_PlayerCustomization.FindAction("Join", throwIfNotFound: true);
         m_PlayerCustomization_Cancel = m_PlayerCustomization.FindAction("Cancel", throwIfNotFound: true);
+        m_PlayerCustomization_Join = m_PlayerCustomization.FindAction("Join", throwIfNotFound: true);
         m_PlayerCustomization_Jump = m_PlayerCustomization.FindAction("Jump", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -1199,8 +1221,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private List<IPlayerCustomizationActions> m_PlayerCustomizationActionsCallbackInterfaces = new List<IPlayerCustomizationActions>();
     private readonly InputAction m_PlayerCustomization_Select;
     private readonly InputAction m_PlayerCustomization_Confirm;
-    private readonly InputAction m_PlayerCustomization_Join;
     private readonly InputAction m_PlayerCustomization_Cancel;
+    private readonly InputAction m_PlayerCustomization_Join;
     private readonly InputAction m_PlayerCustomization_Jump;
     public struct PlayerCustomizationActions
     {
@@ -1208,8 +1230,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public PlayerCustomizationActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Select => m_Wrapper.m_PlayerCustomization_Select;
         public InputAction @Confirm => m_Wrapper.m_PlayerCustomization_Confirm;
-        public InputAction @Join => m_Wrapper.m_PlayerCustomization_Join;
         public InputAction @Cancel => m_Wrapper.m_PlayerCustomization_Cancel;
+        public InputAction @Join => m_Wrapper.m_PlayerCustomization_Join;
         public InputAction @Jump => m_Wrapper.m_PlayerCustomization_Jump;
         public InputActionMap Get() { return m_Wrapper.m_PlayerCustomization; }
         public void Enable() { Get().Enable(); }
@@ -1226,12 +1248,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
             @Confirm.started += instance.OnConfirm;
             @Confirm.performed += instance.OnConfirm;
             @Confirm.canceled += instance.OnConfirm;
-            @Join.started += instance.OnJoin;
-            @Join.performed += instance.OnJoin;
-            @Join.canceled += instance.OnJoin;
             @Cancel.started += instance.OnCancel;
             @Cancel.performed += instance.OnCancel;
             @Cancel.canceled += instance.OnCancel;
+            @Join.started += instance.OnJoin;
+            @Join.performed += instance.OnJoin;
+            @Join.canceled += instance.OnJoin;
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
@@ -1245,12 +1267,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
             @Confirm.started -= instance.OnConfirm;
             @Confirm.performed -= instance.OnConfirm;
             @Confirm.canceled -= instance.OnConfirm;
-            @Join.started -= instance.OnJoin;
-            @Join.performed -= instance.OnJoin;
-            @Join.canceled -= instance.OnJoin;
             @Cancel.started -= instance.OnCancel;
             @Cancel.performed -= instance.OnCancel;
             @Cancel.canceled -= instance.OnCancel;
+            @Join.started -= instance.OnJoin;
+            @Join.performed -= instance.OnJoin;
+            @Join.canceled -= instance.OnJoin;
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
@@ -1444,8 +1466,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     {
         void OnSelect(InputAction.CallbackContext context);
         void OnConfirm(InputAction.CallbackContext context);
-        void OnJoin(InputAction.CallbackContext context);
         void OnCancel(InputAction.CallbackContext context);
+        void OnJoin(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
     }
     public interface IUIActions

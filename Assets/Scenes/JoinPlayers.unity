@@ -254,7 +254,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 363343926337654290, guid: 0f1cc5d2ac18905488955ab099e835a1, type: 3}
       propertyPath: m_JoinBehavior
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 363343926337654290, guid: 0f1cc5d2ac18905488955ab099e835a1, type: 3}
       propertyPath: m_NotificationBehavior
