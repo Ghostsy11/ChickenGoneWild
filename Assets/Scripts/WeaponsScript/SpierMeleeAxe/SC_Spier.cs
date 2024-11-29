@@ -4,74 +4,56 @@ using UnityEngine;
 
 public class SC_Spier : MonoBehaviour
 {
-    //[Header("Script reference")]
+    [Header("Script reference")]
+    [SerializeField] Rigidbody rigidbody;
 
     [Tooltip("Force power")]
     [SerializeField] float force;
     [SerializeField] float Pushforce;
 
-    [SerializeField] GameObject spier;
-    [SerializeField] Transform spierPos;
-    [SerializeField] bool spierIsThrowns;
 
-
+    void Start()
+    {
+        rigidbody = GetComponent<Rigidbody>();
+    }
     void Update()
     {
-        Debug.Log(spierIsThrowns);
-
         if (Input.GetKeyDown(KeyCode.E))
         {
-            SpierAttackRight();
-
+            ApplyForceToTheRightSide();
         }
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            SpierAttackLeft();
-
+            ApplyForceToTheLeftSide();
         }
     }
 
-    private void ApplyForceToTheRightSide(Rigidbody rb)
+    private void ApplyForceToTheRightSide()
     {
-        rb.AddForce(10, force, 0, ForceMode.Impulse);
+        rigidbody.AddForce(force, force, 0, ForceMode.Impulse);
 
     }
 
-    private void ApplyForceToTheLeftSide(Rigidbody rb)
+    private void ApplyForceToTheLeftSide()
     {
-        rb.AddForce(-10, force, 0, ForceMode.Impulse);
+        rigidbody.AddForce(-force, force, 0, ForceMode.Impulse);
 
     }
 
-    public void SpierAttackRight()
+    private void OnCollisionEnter(Collision collision)
     {
-        if (spierIsThrowns == false)
+        if (collision.gameObject.tag == "Enemy")
         {
-            spierIsThrowns = true;
-            var spier1 = Instantiate(spier, spierPos);
-            spier1.transform.parent = null;
+            Debug.Log("kill");
+            collision.gameObject.GetComponent<GameObject>();
+            collision.rigidbody.AddForce(Vector3.up, ForceMode.Impulse);
 
-            ApplyForceToTheRightSide(spier1.GetComponent<Rigidbody>());
-
-            Destroy(spier1, 2.5f);
         }
-    }
-
-    public void SpierAttackLeft()
-    {
-        if (!spierIsThrowns)
+        if (collision.gameObject.tag == "SpierCollision")
         {
-
-            spierIsThrowns = true;
-            var spier1 = Instantiate(spier, spierPos.position, Quaternion.Euler(0f, 0f, 90f));
-            spier1.transform.parent = null;
-
-            ApplyForceToTheLeftSide(spier1.GetComponent<Rigidbody>());
-
-            Destroy(spier1, 2.5f);
+            Debug.Log("Collision VFX");
         }
     }
-
-
 
 }

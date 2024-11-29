@@ -352,14 +352,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 40304dcf-92bf-4925-bfb4-f357dc81ee80
     m_ActionName: Player/Jump[/Keyboard/space]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 2c955407-a14e-4b9a-b2a9-68ef4d8836da
-    m_ActionName: PlayerCustomization/Select[/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: fa47be5f-669a-4686-a4c0-0382bff9abfc
-    m_ActionName: PlayerCustomization/Confirm[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -388,13 +380,13 @@ MonoBehaviour:
   climbSearchPoint: {fileID: 8365483641979444433}
   climableMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   maxSpeed: 5
   steps: 20
   currentStep: 0
   groundMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   stepRayUpper: {fileID: 9155827145240160210}
   stepRayLower: {fileID: 3679964054840258504}
   stepHeight: 0.3
