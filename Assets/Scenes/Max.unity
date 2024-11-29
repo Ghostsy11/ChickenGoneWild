@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 171666297}
   - component: {fileID: 171666296}
   - component: {fileID: 171666295}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 312924236}
   - component: {fileID: 312924235}
   - component: {fileID: 312924234}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -375,7 +375,7 @@ GameObject:
   - component: {fileID: 466566564}
   - component: {fileID: 466566563}
   - component: {fileID: 466566562}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -546,7 +546,7 @@ GameObject:
   - component: {fileID: 1314004211}
   - component: {fileID: 1314004210}
   - component: {fileID: 1314004209}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -788,7 +788,7 @@ GameObject:
   - component: {fileID: 1512052633}
   - component: {fileID: 1512052632}
   - component: {fileID: 1512052631}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1016,7 +1016,7 @@ GameObject:
   - component: {fileID: 1917967898}
   - component: {fileID: 1917967897}
   - component: {fileID: 1917967896}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Climable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
