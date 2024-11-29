@@ -7,15 +7,10 @@ public class SC_PlayerController : MonoBehaviour
 {
     private Rigidbody rb;
     private GameObject playerModel;
-    [SerializeField] private Collider baseCollider;
-    [SerializeField] private Collider jumpCollider;
-    [SerializeField] private Collider dodgeCollider;
-    //public PlayerInputActions playerInput;
-    [Header("Controls")]
+    [SerializeField] private Collider baseCollider, jumpCollider, dodgeCollider;
     public PlayerInputActions playerInput;
-    [SerializeField]
+    [Header("Controls")]
     public InputActionReference move, jump, attack;
-
     private enum PlayerState { grounded, jumping, double_jumping, climbing, dodging };
     [SerializeField] private PlayerState playerState = PlayerState.double_jumping;
 
@@ -53,7 +48,6 @@ public class SC_PlayerController : MonoBehaviour
     private void Awake()
     {
         stepRayUpper.transform.position = new Vector3(stepRayUpper.transform.position.x, stepHeight, stepRayUpper.transform.position.z);
-        playerInput = new PlayerInputActions();
     }
     // Start is called before the first frame update
     private void Start()
@@ -89,37 +83,6 @@ public class SC_PlayerController : MonoBehaviour
         {
             rb.useGravity = true;
         }
-    }
-    private void OnEnable()
-    {
-        SC_EventManager.instance.onEnableControls += EnableControls;
-        SC_EventManager.instance.onDisableControls += DisableControls;
-    }
-    private void OnDisable()
-    {
-        SC_EventManager.instance.onEnableControls -= EnableControls;
-        SC_EventManager.instance.onDisableControls -= DisableControls;
-    }
-    //public void EnableOrDisable(InputAction action, bool enable)
-    //{
-    //    if (enable)
-    //    {
-    //        action.Enable();
-    //        //EnableControls(action);
-    //    }
-    //    else
-    //    {
-    //        action.Disable();
-    //        //DisableControls(action);
-    //    }
-    //}
-    public void EnableControls(InputAction action)
-    {
-        action.Enable();
-    }
-    public void DisableControls(InputAction action)
-    {
-        action.Disable();
     }
     private void Climb()
     {
@@ -230,8 +193,6 @@ public class SC_PlayerController : MonoBehaviour
             yMove = 0;
         }
     }
-
-
     private void MoveHorizontal(float h)
     {
         speed = SpeedCalculation((int)h);
@@ -246,7 +207,10 @@ public class SC_PlayerController : MonoBehaviour
     }
     public void AttackAction(InputAction.CallbackContext context)
     {
+        if (context.performed && attack.action.enabled)
+        {
 
+        }
     }
     private float SpeedCalculation(int dir)
     {

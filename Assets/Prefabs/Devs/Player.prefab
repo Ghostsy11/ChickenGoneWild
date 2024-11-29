@@ -212,9 +212,9 @@ GameObject:
   - component: {fileID: 1400040789398160122}
   - component: {fileID: 903477826079141052}
   - component: {fileID: 4179293377314796984}
-  - component: {fileID: 5500245038544324802}
-  - component: {fileID: 6024657148538572415}
-  - component: {fileID: 6542563443164284234}
+  - component: {fileID: -839224105742094830}
+  - component: {fileID: 7336418555204607860}
+  - component: {fileID: 4254695704278156184}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -282,7 +282,7 @@ MonoBehaviour:
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7053088876646803111}
         m_TargetAssemblyTypeName: 
         m_MethodName: 
         m_Mode: 1
@@ -352,6 +352,74 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 40304dcf-92bf-4925-bfb4-f357dc81ee80
     m_ActionName: Player/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -839224105742094830}
+        m_TargetAssemblyTypeName: SC_PlayerCustomization, Assembly-CSharp
+        m_MethodName: ChangeColor
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2c955407-a14e-4b9a-b2a9-68ef4d8836da
+    m_ActionName: PlayerCustomization/Select[/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow,/XInputControllerWindows/dpad/left,/XInputControllerWindows/dpad/right]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -839224105742094830}
+        m_TargetAssemblyTypeName: SC_PlayerCustomization, Assembly-CSharp
+        m_MethodName: Confirm
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: fa47be5f-669a-4686-a4c0-0382bff9abfc
+    m_ActionName: PlayerCustomization/Confirm[/Keyboard/space,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -839224105742094830}
+        m_TargetAssemblyTypeName: SC_PlayerCustomization, Assembly-CSharp
+        m_MethodName: Cancel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d5f055d6-431b-4667-b651-495e8bd86c92
+    m_ActionName: PlayerCustomization/Confirm1[/Keyboard/enter,/XInputControllerWindows/buttonWest]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 903477826079141052}
+        m_TargetAssemblyTypeName: SC_PlayerController, Assembly-CSharp
+        m_MethodName: JumpAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4886372e-094d-43b2-8ab1-96544c3cbc7a
+    m_ActionName: PlayerCustomization/Jump[/Keyboard/space,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 81b8c017-115a-4194-987d-8526ff07c559
+    m_ActionName: PlayerCustomization/Join[/Keyboard/enter,/XInputControllerWindows/buttonNorth]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -369,9 +437,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 093b5af2caa689c4996f11c08eecf212, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseCollider: {fileID: 5500245038544324802}
-  jumpCollider: {fileID: 6024657148538572415}
-  dodgeCollider: {fileID: 6542563443164284234}
+  baseCollider: {fileID: 0}
+  jumpCollider: {fileID: 0}
+  dodgeCollider: {fileID: 0}
   move: {fileID: -7294232750528319535, guid: 21dff678aa5e4bb41990b23777ea35e5, type: 3}
   jump: {fileID: 1140193202871193105, guid: 21dff678aa5e4bb41990b23777ea35e5, type: 3}
   attack: {fileID: -1897681322588190276, guid: 21dff678aa5e4bb41990b23777ea35e5, type: 3}
@@ -390,7 +458,7 @@ MonoBehaviour:
   stepRayUpper: {fileID: 9155827145240160210}
   stepRayLower: {fileID: 3679964054840258504}
   stepHeight: 0.3
-  stepSmooth: 0.1
+  stepSmooth: 0.05
   rampCheckDistance: 0.2
   jumpSpeed: 6
   edgeJumpTime: 0.1
@@ -421,35 +489,60 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
---- !u!65 &5500245038544324802
-BoxCollider:
+--- !u!114 &-839224105742094830
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7053088876646803111}
-  m_Material: {fileID: 13400000, guid: 4babf10469d64fc4c928fe3e9b836d9f, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 192
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 1
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &6024657148538572415
-BoxCollider:
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe2064e23fe3ee7439392c727e58c985, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customizeMove: {fileID: 7558280118427273363, guid: 21dff678aa5e4bb41990b23777ea35e5, type: 3}
+  customizeConfirm: {fileID: -125208524625741568, guid: 21dff678aa5e4bb41990b23777ea35e5, type: 3}
+  customizeCancel: {fileID: -5315990108870543790, guid: 21dff678aa5e4bb41990b23777ea35e5, type: 3}
+  customizeColors:
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 1, g: 0.25833637, b: 0, a: 1}
+  - {r: 1, g: 0.57091147, b: 0, a: 1}
+  - {r: 1, g: 0.82628024, b: 0, a: 1}
+  - {r: 0.80181503, g: 1, b: 0, a: 1}
+  - {r: 0.51804936, g: 1, b: 0, a: 1}
+  - {r: 0, g: 1, b: 0.22610044, a: 1}
+  - {r: 0, g: 1, b: 0.58915687, a: 1}
+  - {r: 0, g: 1, b: 0.9913833, a: 1}
+  - {r: 0, g: 0.62946534, b: 1, a: 1}
+  - {r: 0, g: 0.28614426, b: 1, a: 1}
+  - {r: 0.075611115, g: 0, b: 1, a: 1}
+  - {r: 0.51784706, g: 0, b: 1, a: 1}
+  - {r: 0.8658347, g: 0, b: 1, a: 1}
+  - {r: 1, g: 0, b: 0.7994261, a: 1}
+  - {r: 1, g: 0, b: 0.42067528, a: 1}
+  customizeRenderer:
+  - {fileID: 8034484206073366784}
+--- !u!114 &7336418555204607860
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7053088876646803111}
-  m_Material: {fileID: 13400000, guid: 4babf10469d64fc4c928fe3e9b836d9f, type: 2}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97c2e83e1b77b064a891fd662892225d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!136 &4254695704278156184
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7053088876646803111}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -459,30 +552,11 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &6542563443164284234
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7053088876646803111}
-  m_Material: {fileID: 13400000, guid: 4babf10469d64fc4c928fe3e9b836d9f, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8550643895515007189
 GameObject:
