@@ -1,18 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SC_SceneManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public static SC_SceneManager instance;
+    private int sceneIndex = 0;
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else 
+        {
+            Destroy(gameObject);
+        }
+    }
     void Start()
     {
-        
+        DontDestroyOnLoad(gameObject);   
     }
-
-    // Update is called once per frame
-    void Update()
+    public void LoadScene(int i)
     {
-        
+        sceneIndex = i;
+        SceneManager.LoadScene(sceneIndex);
+    }
+    private void OnLevelWasLoaded(int level)
+    {
+        if (level == 1)
+        {
+            SC_EventManager.instance.GameLoaded();
+        }
+        else if (level == 0)
+        {
+            SC_EventManager.instance.CustomizeLoaded();
+        }
     }
 }
