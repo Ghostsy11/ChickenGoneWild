@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,10 +11,7 @@ public class SC_PlayerInputManager : MonoBehaviour
     private PlayerInputActions inputActions;
 
     public List<GameObject> players;
-    private int readyAmmount;
     public List<Transform> spawnPoints;
-
-    private InputActionReference move, jump, attack, customizationMove, customizationConfirm;
     private void Awake()
     {
         if (instance == null || instance == this.gameObject)
@@ -31,30 +27,10 @@ public class SC_PlayerInputManager : MonoBehaviour
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
-        SetSpawnPoints();
-        MoveAllPlayersToSpawnPoint();
-    }
-
-    private void SetSpawnPoints()
-    {
-        spawnPoints.Clear();
         Transform spwawnPoints = GameObject.Find("SpawnPoints").transform;
-        for (int i = 0; i < spwawnPoints.childCount; i++)
-        {
+        for (int i = 0; i < spwawnPoints.childCount; i++) {
             spawnPoints.Add(spwawnPoints.GetChild(i).transform);
         }
-    }
-    private void MoveAllPlayersToSpawnPoint()
-    {
-        for (int i = 0; i < players.Count; i++)
-        {
-            SetPlayerSpawnPositions(players[i].GetComponent<PlayerInput>(), i);
-        }
-    }
-    private void SetPlayerSpawnPositions(PlayerInput player, int spawnPointI)
-    {
-        player.transform.position = spawnPoints[spawnPointI].position;
-        player.transform.rotation = spawnPoints[spawnPointI].rotation;
     }
     //public void OnPlayerConnected(NetworkPlayer player)
     //{
@@ -64,20 +40,19 @@ public class SC_PlayerInputManager : MonoBehaviour
     {
         playerInputManager.onPlayerJoined += AddPlayer;
         playerInputManager.onPlayerLeft += RemovePlayer;
-
-        SC_EventManager.onGameLoaded += GameLoaded;
     }
     public void OnDisable()
     {
         playerInputManager.onPlayerJoined -= AddPlayer;
         playerInputManager.onPlayerLeft -= RemovePlayer;
-
-        SC_EventManager.onGameLoaded -= GameLoaded;
     }
     public void AddPlayer(PlayerInput player)
     {
         players.Add(player.gameObject);
-        SetPlayerSpawnPositions(player, players.Count-1);
+        player.transform.position = spawnPoints[players.Count - 1].position;
+        SC_PlayerController playerScr = player.gameObject.GetComponent<SC_PlayerController>();
+        playerScr.DisableControls(playerScr.move);
+        playerScr.DisableControls(playerScr.attack);
         if (players.Count <= 1)
         {
         }
@@ -91,29 +66,18 @@ public class SC_PlayerInputManager : MonoBehaviour
         players.Remove(player.gameObject);
         Destroy(player.gameObject);
     }
-
-    public void AddReady(bool ready)
-    {
-        if (ready)
-        {
-            readyAmmount++;
-            if (readyAmmount >= players.Count)
-            {
-                StartGame();
-            }
-        }
-        else if (readyAmmount > 0) 
-        {
-            readyAmmount--;
-        }
-    }
-    private void StartGame()
-    {
-        SC_SceneManager.instance.LoadScene(1);
-    }
-    public void GameLoaded()
-    {
-        SetSpawnPoints();
-        MoveAllPlayersToSpawnPoint();
-    }
+    //public void EnableDisableAllPlayerControlAction(bool enable, List<InputAction> inputActions)
+    //{
+    //    foreach (GameObject player in players)
+    //    {
+    //        EnableDisablePlayerControlAction(player.GetComponent<SC_PlayerController>(), enable, inputActions);
+    //    }
+    //}
+    //public void EnableDisablePlayerControlAction(SC_PlayerController playerSrc, bool enable, List<InputAction> inputActions)
+    //{
+    //    for (int i = 0; i < inputActions.Count; i++)
+    //    {
+    //        playerSrc.EnableOrDisable(inputActions[i], enable);
+    //    }
+    //}
 }
