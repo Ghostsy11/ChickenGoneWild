@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 6542563443164284234}
   - component: {fileID: -5820559910288488975}
   - component: {fileID: 2307884613175862154}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -403,19 +403,7 @@ MonoBehaviour:
     m_ActionId: 52c59e1a-b8ab-4da8-a1b0-97cfbc7eb39e
     m_ActionName: PlayerCustomization/Cancel[/Keyboard/backspace]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7053088876646803111}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 45678383-b54b-44da-97a1-98e91db78a25
     m_ActionName: PlayerCustomization/Join[/Keyboard/enter]
   - m_PersistentCalls:
@@ -436,7 +424,7 @@ MonoBehaviour:
     m_ActionName: PlayerCustomization/Jump[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
+  m_DefaultActionMap: PlayerCustomization
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &903477826079141052
@@ -462,13 +450,13 @@ MonoBehaviour:
   climbSearchPoint: {fileID: 8365483641979444433}
   climableMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   maxSpeed: 5
   steps: 20
   currentStep: 0
   groundMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   stepRayUpper: {fileID: 9155827145240160210}
   stepRayLower: {fileID: 3679964054840258504}
   stepHeight: 0.3
@@ -590,11 +578,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9f27c712dde7fa41b43a9122b66f647, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  customizeMove: {fileID: 0}
-  customizeConfirm: {fileID: 0}
-  customizeCancel: {fileID: 0}
-  customizeColors: []
-  customizeRenderer: []
+  customizeMove: {fileID: 7558280118427273363, guid: 21dff678aa5e4bb41990b23777ea35e5, type: 3}
+  customizeConfirm: {fileID: -125208524625741568, guid: 21dff678aa5e4bb41990b23777ea35e5, type: 3}
+  customizeCancel: {fileID: 6177672412246948807, guid: 21dff678aa5e4bb41990b23777ea35e5, type: 3}
+  customizeColors:
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 1, g: 0.27524376, b: 0, a: 1}
+  - {r: 1, g: 0.48274058, b: 0, a: 1}
+  - {r: 1, g: 0.5746014, b: 0, a: 1}
+  - {r: 1, g: 0.6822772, b: 0, a: 1}
+  - {r: 1, g: 0.8441622, b: 0, a: 1}
+  - {r: 0.9026984, g: 1, b: 0, a: 1}
+  - {r: 0.7820811, g: 1, b: 0, a: 1}
+  - {r: 0.5797912, g: 1, b: 0, a: 1}
+  - {r: 0.10911965, g: 1, b: 0, a: 1}
+  - {r: 0, g: 1, b: 0.43703103, a: 1}
+  - {r: 0, g: 1, b: 0.7086389, a: 1}
+  - {r: 0, g: 0.9603772, b: 1, a: 1}
+  - {r: 0, g: 0.6314006, b: 1, a: 1}
+  - {r: 0, g: 0.3862195, b: 1, a: 1}
+  - {r: 0, g: 0.02003026, b: 1, a: 1}
+  - {r: 0.30166435, g: 0, b: 1, a: 1}
+  - {r: 0.63632536, g: 0, b: 1, a: 1}
+  - {r: 1, g: 0, b: 0.9964781, a: 1}
+  - {r: 1, g: 0, b: 0.6784816, a: 1}
+  - {r: 1, g: 0, b: 0.3191781, a: 1}
+  customizeRenderer:
+  - {fileID: 8034484206073366784}
+  - {fileID: 2941041584752451035}
 --- !u!1 &8550643895515007189
 GameObject:
   m_ObjectHideFlags: 0
