@@ -5,14 +5,21 @@ using UnityEngine;
 public class AnimationController : MonoBehaviour
 {
     [SerializeField] Animator animator;
+    [SerializeField] const string AnimationBlock = "Block";
+    [SerializeField] const string AnimationBlockBool = "BlockBool";
+
+
+
+    [Header("Attacks In use")]
     [SerializeField] const string AnimationSpier = "Spier";
     [SerializeField] const string AnimationSwordAttack = "SwordAttack";
     [SerializeField] const string AnimationAxe = "Axe";
     [SerializeField] const string AnimationThrow = "Throw";
-    [SerializeField] const string AnimationBlock = "Block";
-    [SerializeField] const string AnimationBlockBool = "BlockBool";
+
+    [Header("Movemeant")]
     [SerializeField] const string AnimationJump = "Jump";
     [SerializeField] const string AnimationHang = "Hang";
+    [SerializeField] const string AnimaionRunning = "Running";
 
 
 
@@ -44,8 +51,6 @@ public class AnimationController : MonoBehaviour
         sowrdAudio.PlayThisSound();
         sowrdEffect.PlayVFX(transform);
 
-        Debug.Log("test");
-
     }
 
     public void PlayerAnimationAxe()
@@ -58,6 +63,21 @@ public class AnimationController : MonoBehaviour
         animator.SetBool(AnimationThrow, true);
         // Condation
         animator.SetBool(AnimationThrow, false);
+    }
+
+    public void PlayerAnimationRunningTrue()
+    {
+        animator.SetBool(AnimaionRunning, true);
+    }
+    public void PlayerAnimationRunningFalse()
+    {
+        animator.SetBool(AnimaionRunning, false);
+
+    }
+
+    public void PlayerIsJumbing()
+    {
+        animator.SetTrigger(AnimationJump);
     }
 
     public void PlayBlockAnimation()
