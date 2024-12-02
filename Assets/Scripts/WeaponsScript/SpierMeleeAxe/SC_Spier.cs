@@ -4,56 +4,85 @@ using UnityEngine;
 
 public class SC_Spier : MonoBehaviour
 {
-    [Header("Script reference")]
-    [SerializeField] Rigidbody rigidbody;
+    //[Header("Script reference")]
 
     [Tooltip("Force power")]
     [SerializeField] float force;
     [SerializeField] float Pushforce;
 
+    [SerializeField] GameObject spier;
+    [SerializeField] Transform spierPos;
+    [SerializeField] bool spierIsThrowns;
+    [SerializeField] float delayTime = 1f;
 
-    void Start()
-    {
-        rigidbody = GetComponent<Rigidbody>();
-    }
+
     void Update()
     {
+        Debug.Log(spierIsThrowns);
+
         if (Input.GetKeyDown(KeyCode.E))
         {
-            ApplyForceToTheRightSide();
-        }
+            SpierAttackRight();
 
+        }
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            ApplyForceToTheLeftSide();
+            SpierAttackLeft();
+
         }
     }
 
-    private void ApplyForceToTheRightSide()
+    private void ApplyForceToTheRightSide(Rigidbody rb)
     {
-        rigidbody.AddForce(force, force, 0, ForceMode.Impulse);
+        rb.AddForce(10, force, 0, ForceMode.Impulse);
 
     }
 
-    private void ApplyForceToTheLeftSide()
+    private void ApplyForceToTheLeftSide(Rigidbody rb)
     {
-        rigidbody.AddForce(-force, force, 0, ForceMode.Impulse);
+        rb.AddForce(-10, force, 0, ForceMode.Impulse);
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void SpierAttackRight()
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (spierIsThrowns == false)
         {
-            Debug.Log("kill");
-            collision.gameObject.GetComponent<GameObject>();
-            collision.rigidbody.AddForce(Vector3.up, ForceMode.Impulse);
+            spierIsThrowns = true;
+            var spier1 = Instantiate(spier, spierPos);
+            spier1.transform.parent = null;
+
+            ApplyForceToTheRightSide(spier1.GetComponent<Rigidbody>());
+
+            StartCoroutine(WaitBeforeDestroy(spier1));
+        }
+    }
+
+    public void SpierAttackLeft()
+    {
+        if (!spierIsThrowns)
+        {
+
+            spierIsThrowns = true;
+            var spier1 = Instantiate(spier, spierPos.position, Quaternion.Euler(0f, 0f, 90f));
+            spier1.transform.parent = null;
+
+            ApplyForceToTheLeftSide(spier1.GetComponent<Rigidbody>());
+
+            StartCoroutine(WaitBeforeDestroy(spier1));
 
         }
-        if (collision.gameObject.tag == "SpierCollision")
-        {
-            Debug.Log("Collision VFX");
-        }
+    }
+
+
+    private IEnumerator WaitBeforeDestroy(GameObject destroy)
+    {
+        yield return new WaitForSeconds(delayTime);
+        Destroy(destroy);
+
+        spierIsThrowns = false;
+
+        StopCoroutine(WaitBeforeDestroy(destroy));
     }
 
 }
