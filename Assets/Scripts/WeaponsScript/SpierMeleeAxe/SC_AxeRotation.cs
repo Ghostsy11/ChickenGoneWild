@@ -21,16 +21,17 @@ public class SC_AxeRotation : MonoBehaviour
     void Update()
     {
         //rotate2();
-
-        ThorwAxe();
-
         if (axeThrowenCheck == true)
         {
 
             ApplyForceXAxis();
         }
 
-        ReturnAxeEnabler();
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            axeThrowenCheck = false;
+            returingAxe = true;
+        }
         ReturingAxe();
 
     }
@@ -105,25 +106,6 @@ public class SC_AxeRotation : MonoBehaviour
         }
 
 
-    }
-
-
-    public void ThorwAxe()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            axeThrowenCheck = true;
-        }
-
-    }
-
-    public void ReturnAxeEnabler()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            axeThrowenCheck = false;
-            returingAxe = true;
-        }
     }
 
 

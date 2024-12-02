@@ -6,36 +6,24 @@ public class SC_ThrowChicken : MonoBehaviour
 {
     [Header("Script reference")]
     [SerializeField] Rigidbody rigidbody;
-    [SerializeField] PickUpChicken pickUpChicken;
-    [SerializeField] SC_ChickenBomb sC_ChickenBomb;
+
     [Tooltip("Force power")]
     [SerializeField] float force;
 
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
-        sC_ChickenBomb = GetComponent<SC_ChickenBomb>();
-        pickUpChicken = GetComponent<PickUpChicken>();
     }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            pickUpChicken.ThorwAfterPickUp();
             ApplyForceToTheRightSide();
-            sC_ChickenBomb.chickenIsProvoked = true;
-            sC_ChickenBomb.WaitingForTarget();
-            GetComponent<SC_ThrowChicken>().enabled = false;
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            pickUpChicken.ThorwAfterPickUp();
             ApplyForceToTheLeftSide();
-            sC_ChickenBomb.chickenIsProvoked = true;
-            sC_ChickenBomb.WaitingForTarget();
-            GetComponent<SC_ThrowChicken>().enabled = false;
-
         }
     }
 

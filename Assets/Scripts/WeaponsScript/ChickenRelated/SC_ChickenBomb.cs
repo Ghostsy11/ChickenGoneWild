@@ -17,7 +17,7 @@ public class SC_ChickenBomb : MonoBehaviour
     [SerializeField] float moveSpeed;
     [Tooltip("Chieken Speed")]
     [SerializeField] float timeToSelfBlowUp;
-    public bool chickenIsProvoked;
+    [SerializeField] bool chickenIsProvoked;
 
     [Header("Script reference")]
     [Tooltip("when player throw the bomb and no one in range timer will be activated. If no one enter the range on time the chicken will blow itself up.")]
@@ -67,11 +67,11 @@ public class SC_ChickenBomb : MonoBehaviour
     }
 
     // To activite timer of the bomb after being provoked
-    public void WaitingForTarget()
+    private void WaitingForTarget()
     {
         if (chickenIsProvoked)
         {
-            onTime.SetTimer(timeToSelfBlowUp, () => Debug.Log("Timer complete!"));
+            onTime.SetTimer(2f, () => Debug.Log("Timer complete!"));
             Debug.Log("Blow up when chicken is thrown and no one in rage after certain amount of time");
             Debug.Log("Player Effects");
         }
