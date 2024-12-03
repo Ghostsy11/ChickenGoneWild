@@ -32,6 +32,7 @@ public class SC_PlayerCustomization : MonoBehaviour
                 {
                     customizeRenderer[i].material.color = customizeColors[currentColor];
                 }
+                SC_ReadyUpUI.instance.SetColor(customizeColors[currentColor], gameObject);
             }
         }
     }
