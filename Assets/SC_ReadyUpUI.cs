@@ -18,6 +18,8 @@ public class SC_ReadyUpUI : MonoBehaviour
     [SerializeField] private Color readyColor;
 
     private List<GameObject> players = new();
+
+    [SerializeField]private GameObject timer;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -70,6 +72,18 @@ public class SC_ReadyUpUI : MonoBehaviour
             Destroy(readyObjects[readyObjects.Count]);
             readyObjects.RemoveAt(readyObjects.Count);
             baseColors.RemoveAt(baseColors.Count);
+        }
+    }
+    public void SetTimer(int i)
+    {
+        if (i <= 0)
+        {
+            timer.SetActive(false);
+        }
+        else
+        {
+            timer.SetActive(true);
+            timer.GetComponent<TextMeshProUGUI>().text = i.ToString();
         }
     }
 }

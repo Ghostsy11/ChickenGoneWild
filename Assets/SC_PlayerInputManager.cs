@@ -101,7 +101,7 @@ public class SC_PlayerInputManager : MonoBehaviour
             readyAmmount++;
             if (readyAmmount >= players.Count)
             {
-                StartGame();
+                StartCoroutine(StartGame());
             }
         }
         else if (readyAmmount > 0)
@@ -109,8 +109,21 @@ public class SC_PlayerInputManager : MonoBehaviour
             readyAmmount--;
         }
     }
-    private void StartGame()
+    private IEnumerator StartGame()
     {
+        for (int i = 3; i > 0; i--)
+        {
+            if (readyAmmount >= players.Count)
+            {
+                SC_ReadyUpUI.instance.SetTimer(i);
+                yield return new WaitForSeconds(1);
+            }
+        }
+        if (readyAmmount < players.Count)
+        {
+            SC_ReadyUpUI.instance.SetTimer(0);
+            yield break;
+        }
         SC_SceneManager.instance.LoadScene(1);
     }
     public void GameLoaded()
