@@ -29,10 +29,8 @@ public class SC_ReadyUpUI : MonoBehaviour
     {
         for (int i = 0; i < players.Count; i++)
         {
-            Debug.Log(i);
             if (players[i] == player)
             {
-                Debug.Log("player found");
                 if (ready)
                 {
                     readyObjects[i].GetComponent<Image>().color = readyColor;
