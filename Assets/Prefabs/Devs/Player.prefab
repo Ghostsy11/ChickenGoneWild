@@ -422,6 +422,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 6f228cb7-4e44-47ce-9593-70f380911c6f
     m_ActionName: PlayerCustomization/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3300fa77-4ae3-46da-8e6e-688874cc65ff
+    m_ActionName: Player/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c053b784-fa10-4087-9368-c9e6ca1b8b1f
+    m_ActionName: PlayerCustomization/Pause[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerCustomization

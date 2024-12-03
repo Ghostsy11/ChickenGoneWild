@@ -15,7 +15,6 @@ public class SC_PlayerCustomization : MonoBehaviour
     bool ready = false;
     public void ChangeColor(InputAction.CallbackContext context)
     {
-        Debug.Log(context.action.name);
         if (!ready)
         {
             if (context.performed && customizeMove.action.enabled)
