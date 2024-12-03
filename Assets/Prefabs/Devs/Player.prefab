@@ -454,7 +454,7 @@ MonoBehaviour:
   jump: {fileID: 1140193202871193105, guid: 21dff678aa5e4bb41990b23777ea35e5, type: 3}
   attack: {fileID: -1897681322588190276, guid: 21dff678aa5e4bb41990b23777ea35e5, type: 3}
   playerState: 2
-  searchRadius: 0.5
+  searchRadius: 0.75
   climbSearchPoint: {fileID: 8365483641979444433}
   climableMask:
     serializedVersion: 2

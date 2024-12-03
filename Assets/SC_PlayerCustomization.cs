@@ -42,6 +42,7 @@ public class SC_PlayerCustomization : MonoBehaviour
             if (!ready)
             {
                 ready = true;
+                SC_ReadyUpUI.instance.SetReady(true, gameObject);
                 SC_PlayerInputManager.instance.AddReady(ready);
             }
         }
@@ -53,6 +54,7 @@ public class SC_PlayerCustomization : MonoBehaviour
             if (ready)
             {
                 ready = false;
+                SC_ReadyUpUI.instance.SetReady(false, gameObject);
                 SC_PlayerInputManager.instance.AddReady(ready);
             }
         }
