@@ -76,6 +76,10 @@ public class SC_PlayerInputManager : MonoBehaviour
     }
     public void AddPlayer(PlayerInput player)
     {
+        if (players.Count > 6)
+        {
+            return;
+        }
         players.Add(player.gameObject);
         SetPlayerSpawnPositions(player, players.Count - 1);
         if (players.Count <= 1)
