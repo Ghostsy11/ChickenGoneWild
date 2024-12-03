@@ -22,10 +22,12 @@ public class SC_ChickenBomb : MonoBehaviour
     [Header("Script reference")]
     [Tooltip("when player throw the bomb and no one in range timer will be activated. If no one enter the range on time the chicken will blow itself up.")]
     [SerializeField] SC_ActionOnTime onTime;
+    [SerializeField] ChickenAnimation chickenAnimation;
 
     private void Start()
     {
         onTime = gameObject.GetComponent<SC_ActionOnTime>();
+        chickenAnimation = FindObjectOfType<ChickenAnimation>();
     }
 
     private void Update()
@@ -105,6 +107,8 @@ public class SC_ChickenBomb : MonoBehaviour
                 // Move towards the closest enemy
                 Vector3 direction = (closestEnemy.transform.position - transform.position).normalized;
                 transform.position += direction * moveSpeed * Time.deltaTime;
+                chickenAnimation.RunChicken();
+
             }
         }
     }
