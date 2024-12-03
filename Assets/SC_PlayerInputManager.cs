@@ -80,15 +80,17 @@ public class SC_PlayerInputManager : MonoBehaviour
         SetPlayerSpawnPositions(player, players.Count - 1);
         if (players.Count <= 1)
         {
+            //set main player controls for ui etc
         }
+        SC_ReadyUpUI.instance.SetPlayers(players);
     }
     public void RemovePlayer(PlayerInput player)
     {
         if (players.Count <= 1)
         {
-            inputActions = null;
         }
         players.Remove(player.gameObject);
+        SC_ReadyUpUI.instance.SetPlayers(players);
         Destroy(player.gameObject);
     }
 
