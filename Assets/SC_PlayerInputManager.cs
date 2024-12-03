@@ -82,7 +82,7 @@ public class SC_PlayerInputManager : MonoBehaviour
         {
             //set main player controls for ui etc
         }
-        SC_ReadyUpUI.instance.SetPlayers(players);
+        //SC_ReadyUpUI.instance.SetPlayers(players);
     }
     public void RemovePlayer(PlayerInput player)
     {
@@ -90,7 +90,7 @@ public class SC_PlayerInputManager : MonoBehaviour
         {
         }
         players.Remove(player.gameObject);
-        SC_ReadyUpUI.instance.SetPlayers(players);
+        //SC_ReadyUpUI.instance.SetPlayers(players);
         Destroy(player.gameObject);
     }
 
