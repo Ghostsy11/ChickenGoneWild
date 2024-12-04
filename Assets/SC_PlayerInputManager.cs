@@ -76,13 +76,17 @@ public class SC_PlayerInputManager : MonoBehaviour
     }
     public void AddPlayer(PlayerInput player)
     {
+        if (players.Count > 6)
+        {
+            return;
+        }
         players.Add(player.gameObject);
         SetPlayerSpawnPositions(player, players.Count - 1);
         if (players.Count <= 1)
         {
             //set main player controls for ui etc
         }
-        //SC_ReadyUpUI.instance.SetPlayers(players);
+        SC_ReadyUpUI.instance.SetPlayers(players);
     }
     public void RemovePlayer(PlayerInput player)
     {
@@ -90,7 +94,7 @@ public class SC_PlayerInputManager : MonoBehaviour
         {
         }
         players.Remove(player.gameObject);
-        //SC_ReadyUpUI.instance.SetPlayers(players);
+        SC_ReadyUpUI.instance.SetPlayers(players);
         Destroy(player.gameObject);
     }
 
@@ -101,7 +105,7 @@ public class SC_PlayerInputManager : MonoBehaviour
             readyAmmount++;
             if (readyAmmount >= players.Count)
             {
-                StartGame();
+                StartCoroutine(StartGame());
             }
         }
         else if (readyAmmount > 0)
@@ -109,8 +113,21 @@ public class SC_PlayerInputManager : MonoBehaviour
             readyAmmount--;
         }
     }
-    private void StartGame()
+    private IEnumerator StartGame()
     {
+        for (int i = 3; i > 0; i--)
+        {
+            if (readyAmmount >= players.Count)
+            {
+                SC_ReadyUpUI.instance.SetTimer(i);
+                yield return new WaitForSeconds(1);
+            }
+        }
+        if (readyAmmount < players.Count)
+        {
+            SC_ReadyUpUI.instance.SetTimer(0);
+            yield break;
+        }
         SC_SceneManager.instance.LoadScene(1);
     }
     public void GameLoaded()
