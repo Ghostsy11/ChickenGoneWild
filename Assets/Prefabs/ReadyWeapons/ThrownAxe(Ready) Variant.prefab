@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ThrownAxe(Ready) Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 4964323072025360759, guid: 985ef5f5c4ba68343abacf258e20fc98, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 5180936932252235898, guid: 985ef5f5c4ba68343abacf258e20fc98, type: 3}
       propertyPath: forceUpOnGreenLineaAxis
       value: 9

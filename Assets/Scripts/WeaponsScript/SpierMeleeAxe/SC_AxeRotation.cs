@@ -7,6 +7,7 @@ public class SC_AxeRotation : MonoBehaviour
     [Header("Genreal Settings")]
     [SerializeField] bool axeThrowenCheck;
     [SerializeField] bool returingAxe;
+    [SerializeField] bool DoubleCheck;
     [SerializeField] float rotationAxeSpeed;
     [SerializeField] float RotationSpeedWhenItComesBack;
     [SerializeField] float forceOnXOrRedLineAxisRight;
@@ -22,9 +23,9 @@ public class SC_AxeRotation : MonoBehaviour
     {
         //rotate2();
 
-        ThorwAxe();
+        //ThorwAxe();
 
-        if (axeThrowenCheck == true)
+        if (axeThrowenCheck == true && DoubleCheck == true)
         {
 
             ApplyForceXAxis();
@@ -57,9 +58,21 @@ public class SC_AxeRotation : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Touched:" + collision.gameObject);
-        axeThrowenCheck = false;
         rb.isKinematic = true;
+        DoubleCheck = false;
+        if (DoubleCheck == false)
+        {
+
+
+            axeThrowenCheck = false;
+        }
+        else
+        {
+        }
+
+
     }
+
 
     // Link to the formule
     // https://www.youtube.com/watch?v=Xwj8_z9OrFw&ab_channel=RyanZehm
@@ -110,10 +123,9 @@ public class SC_AxeRotation : MonoBehaviour
 
     public void ThorwAxe()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            axeThrowenCheck = true;
-        }
+        DoubleCheck = true;
+        axeThrowenCheck = true;
+
 
     }
 
@@ -122,8 +134,11 @@ public class SC_AxeRotation : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             axeThrowenCheck = false;
+            DoubleCheck = true;
             returingAxe = true;
+
         }
+
     }
 
 

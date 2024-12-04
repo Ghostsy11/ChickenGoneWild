@@ -6,6 +6,14 @@ public class AnimationTesting : MonoBehaviour
 {
 
     [SerializeField] Animator animator;
+    [SerializeField] PlayerAttackState axe;
+    [SerializeField] GameObject weaponPoint;
+    [SerializeField] GameObject weaponTargetSowrd;
+    [SerializeField] GameObject weaponTargetAxe;
+    [SerializeField] SC_AxeRotation weaponTarget;
+    [SerializeField] private List<GameObject> childrenList = new List<GameObject>(); // List to store children
+
+    [SerializeField] GameObject weapon;
 
     [SerializeField] const string Walking = "Walking";
     [SerializeField] const string Jumping = "Hanging";
@@ -19,6 +27,10 @@ public class AnimationTesting : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        axe = GetComponent<PlayerAttackState>();
+
+        //weapon = axe.weaponSort;
+
     }
 
     void Update()
@@ -39,6 +51,7 @@ public class AnimationTesting : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.V))
         {
             HitSowrdAnimation();
+            AxeeHit();
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
@@ -47,6 +60,7 @@ public class AnimationTesting : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X))
         {
             ThrowingRightSideAxe();
+            SwordHit();
         }
         if (Input.GetKeyDown(KeyCode.L))
         {
@@ -77,6 +91,8 @@ public class AnimationTesting : MonoBehaviour
     public void ThrowingLeftSideAxe()
     {
         animator.SetTrigger(ThrowLeftSideAxe);
+
+
     }
 
     public void ThrowingRightSideAxe()
@@ -94,4 +110,87 @@ public class AnimationTesting : MonoBehaviour
         animator.SetTrigger(GettingAxeBack);
     }
 
+
+    private void InvokeAxeThrowerer()
+    {
+        Debug.Log("testing");
+
+        if (axe.playerAttackState == PlayerAttackState.AttackState.Thorwable)
+        {
+
+            StoreChildObjects();
+
+        }
+
+    }
+
+    private void StoreChildObjects()
+    {
+
+
+        // Iterate through all children of the parent object
+        foreach (Transform child in weaponPoint.transform)
+        {
+            if (!childrenList.Contains(child.gameObject))
+            {
+                childrenList.Add(child.gameObject); // Add the child GameObject to the list
+
+            }
+
+            foreach (Transform childinChild in child.transform)
+            {
+                if (!childrenList.Contains(childinChild.gameObject))
+                {
+                    childrenList.Add(childinChild.gameObject);
+                }
+                weaponTarget = childrenList[1].gameObject.GetComponent<SC_AxeRotation>();
+
+                if (weaponTarget != null)
+                {
+                    weaponTarget.ThorwAxe();
+                }
+                else
+                {
+                    return;
+                }
+                //weaponTarget.ThorwAxe();
+            }
+        }
+
+        Debug.Log($"Stored {childrenList.Count} children in the list.");
+    }
+    private void SwordHit()
+    {
+        if (axe.playerAttackState == PlayerAttackState.AttackState.Sowrd)
+        {
+            foreach (Transform child in weaponPoint.transform)
+            {
+                if (!childrenList.Contains(child.gameObject))
+                {
+                    childrenList.Add(child.gameObject); // Add the child GameObject to the list
+                    child.transform.parent = weaponTargetSowrd.transform;
+
+
+                }
+            }
+            Debug.Log("Sowrd");
+        }
+    }
+
+    private void AxeeHit()
+    {
+        if (axe.playerAttackState == PlayerAttackState.AttackState.Axe)
+        {
+            foreach (Transform child in weaponPoint.transform)
+            {
+                if (!childrenList.Contains(child.gameObject))
+                {
+                    childrenList.Add(child.gameObject); // Add the child GameObject to the list
+                    child.transform.parent = weaponTargetAxe.transform;
+
+                }
+            }
+            Debug.Log("axe");
+        }
+    }
 }

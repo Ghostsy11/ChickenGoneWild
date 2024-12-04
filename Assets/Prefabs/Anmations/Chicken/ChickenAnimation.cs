@@ -21,7 +21,7 @@ public class ChickenAnimation : MonoBehaviour
 
     public void RunChicken()
     {
-        animator.SetBool(ChickenRunning, true);
+        animator.SetTrigger(ChickenRunning);
     }
 
 }

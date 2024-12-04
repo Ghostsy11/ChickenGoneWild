@@ -18,8 +18,6 @@ public class SC_Spier : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(spierIsThrowns);
-
         if (Input.GetKeyDown(KeyCode.E))
         {
             SpierAttackRight();

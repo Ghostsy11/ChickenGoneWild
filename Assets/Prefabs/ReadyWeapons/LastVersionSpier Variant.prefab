@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LastVersionSpier Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 6916655552291253037, guid: 358b51594fe1c734fb07794653beb06c, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 7924708235101899364, guid: 358b51594fe1c734fb07794653beb06c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
