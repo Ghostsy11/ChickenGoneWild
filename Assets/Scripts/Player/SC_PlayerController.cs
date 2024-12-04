@@ -218,7 +218,13 @@ public class SC_PlayerController : MonoBehaviour
     {
         if (dir != 0)
         {
-            playerModel.transform.rotation = Quaternion.Euler(0, dir * 90, 0);
+            int rotation = 180;
+            if (dir == 1)
+            {
+                rotation = 360;
+            }
+            playerModel.transform.rotation = Quaternion.Euler(0, rotation, 0);
+            Debug.Log(dir);
             if (dir > direction || dir < direction)
             {
                 currentStep = 0;

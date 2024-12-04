@@ -18,6 +18,7 @@ public class SC_AxeRotation : MonoBehaviour
     [SerializeField] Transform curvPoint, targetPlayerHand;
     [SerializeField] Vector3 oldAxePos;
     [SerializeField] float time = 0.0f;
+    private bool returingAxeEnabled = false;
 
     void Update()
     {
@@ -30,8 +31,10 @@ public class SC_AxeRotation : MonoBehaviour
 
             ApplyForceXAxis();
         }
-
-        ReturnAxeEnabler();
+        if (returingAxeEnabled)
+        {
+            ReturnAxeEnabler();
+        }
         ReturingAxe();
 
     }
@@ -131,15 +134,13 @@ public class SC_AxeRotation : MonoBehaviour
 
     public void ReturnAxeEnabler()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
             axeThrowenCheck = false;
             DoubleCheck = true;
             returingAxe = true;
-
-        }
-
     }
-
+    public void ReturnAxeBoolEnabler()
+    {
+        returingAxeEnabled = true;
+    }
 
 }

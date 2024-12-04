@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class AnimationTesting : MonoBehaviour
 {
@@ -33,50 +34,59 @@ public class AnimationTesting : MonoBehaviour
 
     }
 
-    void Update()
-    {
+    //void Update()
+    //{
 
-        if (Input.GetKeyDown(KeyCode.N))
+    //    if (Input.GetKeyDown(KeyCode.N))
+    //    {
+    //        InvokeWalkingAnimation();
+    //    }
+    //    //if (Input.GetKeyDown(KeyCode.M))
+    //    //{
+    //    //    NotInvokingWalkingAnimation();
+    //    //}
+    //    if (Input.GetKeyDown(KeyCode.B))
+    //    {
+    //        InvokingHangingInAirAnimation();
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.C))
+    //    {
+    //        ThrowingLeftSideAxe();
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.L))
+    //    {
+    //        GettingAxeAnimation();
+    //    }
+    //}
+    public void Attack(InputAction.CallbackContext context)
+    {
+        Debug.Log("2");
+        if (context.performed)
         {
-            InvokeWalkingAnimation();
-        }
-        if (Input.GetKeyDown(KeyCode.M))
+        if (axe.playerAttackState == PlayerAttackState.AttackState.Thorwable)
         {
-            NotInvokingWalkingAnimation();
+            InvokeAxeThrowerer();
         }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            InvokingHangingInAirAnimation();
-        }
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            HitSowrdAnimation();
-            AxeeHit();
-        }
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            ThrowingLeftSideAxe();
-        }
-        if (Input.GetKeyDown(KeyCode.X))
+        if (axe.playerAttackState == PlayerAttackState.AttackState.Sowrd)
         {
             ThrowingRightSideAxe();
             SwordHit();
         }
-        if (Input.GetKeyDown(KeyCode.L))
+        if (axe.playerAttackState == PlayerAttackState.AttackState.Axe)
         {
-            GettingAxeAnimation();
+            HitSowrdAnimation();
+            AxeeHit();
         }
-
+        }
     }
-
     public void InvokeWalkingAnimation()
     {
-        animator.SetBool(Walking, true);
+        animator.SetTrigger(Walking );
     }
-    public void NotInvokingWalkingAnimation()
-    {
-        animator.SetBool(Walking, false);
-    }
+    //public void NotInvokingWalkingAnimation()
+    //{
+    //    animator.SetBool(Walking, false);
+    //}
 
     public void InvokingHangingInAirAnimation()
     {

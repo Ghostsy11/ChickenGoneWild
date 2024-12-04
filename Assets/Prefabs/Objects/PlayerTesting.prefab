@@ -24,12 +24,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 523920902465835579}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.70090926, y: -0, z: -0, w: 0.7132505}
+  m_LocalPosition: {x: 0.016666666, y: 0, z: 0}
+  m_LocalScale: {x: 0.016666666, y: 0.016666662, z: 0.016666662}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8144088526536455886}
+  m_Father: {fileID: 809879685431553548}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &674827439022653005
 GameObject:
@@ -55,12 +55,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 674827439022653005}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.07, y: 0.835, z: -0.786}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.70090926, y: -0, z: -0, w: 0.7132505}
+  m_LocalPosition: {x: 0.0011666666, y: 0.0130500095, z: -0.002978208}
+  m_LocalScale: {x: 0.016666666, y: 0.016666662, z: 0.016666662}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8144088526536455886}
+  m_Father: {fileID: 809879685431553548}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3031610439764449497
 GameObject:
@@ -87,7 +87,7 @@ Transform:
   m_GameObject: {fileID: 3031610439764449497}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -2.512, z: 0}
+  m_LocalPosition: {x: 0.55, y: -2, z: -0}
   m_LocalScale: {x: 1.6666665, y: 1.6666665, z: 1.6666665}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -118,7 +118,7 @@ Transform:
   m_GameObject: {fileID: 4703319946504867184}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.448, z: 0}
+  m_LocalPosition: {x: 0, y: 1.488, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -172,9 +172,12 @@ GameObject:
   - component: {fileID: 1915523660483168960}
   - component: {fileID: 4669407700031797698}
   - component: {fileID: 8579126500589308082}
+  - component: {fileID: 9928340287206068}
+  - component: {fileID: 7159470603272566821}
+  - component: {fileID: 2882126442928152422}
   m_Layer: 6
   m_Name: PlayerTesting
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -187,17 +190,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7541566576151854918}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2536618223054016241}
   - {fileID: 8128436082514688152}
-  - {fileID: 404573815616900797}
-  - {fileID: 2179532246543930523}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4302482053272482782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,6 +238,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4634539074138332504}
+        m_TargetAssemblyTypeName: AnimationTesting, Assembly-CSharp
+        m_MethodName: InvokeWalkingAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 5cd61630-deb8-4a7e-adfe-42d8bf54249d
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
@@ -244,6 +257,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1800931119890712792}
         m_TargetAssemblyTypeName: SC_PlayerController, Assembly-CSharp
         m_MethodName: AttackAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4634539074138332504}
+        m_TargetAssemblyTypeName: AnimationTesting, Assembly-CSharp
+        m_MethodName: Attack
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -304,6 +329,30 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4634539074138332504}
+        m_TargetAssemblyTypeName: AnimationTesting, Assembly-CSharp
+        m_MethodName: InvokingHangingInAirAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: AnimationTesting, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -377,8 +426,44 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4634539074138332504}
+        m_TargetAssemblyTypeName: AnimationTesting, Assembly-CSharp
+        m_MethodName: InvokingHangingInAirAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 6f228cb7-4e44-47ce-9593-70f380911c6f
     m_ActionName: PlayerCustomization/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3300fa77-4ae3-46da-8e6e-688874cc65ff
+    m_ActionName: Player/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c053b784-fa10-4087-9368-c9e6ca1b8b1f
+    m_ActionName: PlayerCustomization/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6587541343400069747, guid: e0c7e292c748cdd4a8bea8da1cc87fb2, type: 3}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f12d7732-23e4-403a-9f7e-0f87f64f725d
+    m_ActionName: Player/Callback[/XInputControllerWindows/buttonNorth,/Keyboard/f,/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerCustomization
@@ -446,7 +531,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 120
   m_CollisionDetection: 1
 --- !u!65 &839726483331713517
 BoxCollider:
@@ -465,7 +550,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -563,6 +648,55 @@ MonoBehaviour:
   customizeRenderer:
   - {fileID: 510486533852126780}
   - {fileID: 8158039872099029401}
+--- !u!136 &9928340287206068
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7541566576151854918}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.46383163
+  m_Height: 1.963295
+  m_Direction: 1
+  m_Center: {x: -0.036168367, y: 0.71484447, z: 0}
+--- !u!114 &7159470603272566821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7541566576151854918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27a874ee1bc212a46bc880aca099941e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  damage: 1
+--- !u!114 &2882126442928152422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7541566576151854918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d70b8ef80026ab04eb0999d0dcc31394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5921491108991369689
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -636,6 +770,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8151159220674907944, guid: 255301e08cf9c544f8ffb400a91cd75a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5169247247034894857}
+    - targetCorrespondingSourceObject: {fileID: 6417657516160937941, guid: 255301e08cf9c544f8ffb400a91cd75a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 404573815616900797}
+    - targetCorrespondingSourceObject: {fileID: 6417657516160937941, guid: 255301e08cf9c544f8ffb400a91cd75a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2179532246543930523}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8815071362865042834, guid: 255301e08cf9c544f8ffb400a91cd75a, type: 3}
       insertIndex: -1
@@ -644,6 +784,11 @@ PrefabInstance:
 --- !u!23 &510486533852126780 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 6140869224139120613, guid: 255301e08cf9c544f8ffb400a91cd75a, type: 3}
+  m_PrefabInstance: {fileID: 5921491108991369689}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &809879685431553548 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6417657516160937941, guid: 255301e08cf9c544f8ffb400a91cd75a, type: 3}
   m_PrefabInstance: {fileID: 5921491108991369689}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1204359958191167260 stripped
@@ -682,6 +827,17 @@ MonoBehaviour:
   playerAttackState: 0
   weaponSort: {fileID: 0}
   weaponSpawnPoint: {fileID: 404573815616900797}
+--- !u!114 &4634539074138332504 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1332058826269940865, guid: 255301e08cf9c544f8ffb400a91cd75a, type: 3}
+  m_PrefabInstance: {fileID: 5921491108991369689}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2916134055128503371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de57f90694db5874bbfc9bbbf1de8914, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!23 &8158039872099029401 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2529460310016725056, guid: 255301e08cf9c544f8ffb400a91cd75a, type: 3}
