@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 408902082817276375}
   m_Layer: 0
   m_Name: axe
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,15 +114,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axeThrowenCheck: 0
   returingAxe: 0
+  DoubleCheck: 0
   rotationAxeSpeed: 1300
   RotationSpeedWhenItComesBack: 4
   forceOnXOrRedLineAxisRight: 3
-  forceUpOnGreenLineaAxis: 12
+  forceUpOnGreenLineaAxis: 9
   rb: {fileID: 1489530608563407116}
   curvPoint: {fileID: 2328107625037972986}
   targetPlayerHand: {fileID: 7719306083891589981}
   oldAxePos: {x: 0, y: 0, z: 0}
   time: 0
+  returingAxeEnabled: 0
+  RefToAxeWeapon: {fileID: 0}
 --- !u!54 &1489530608563407116
 Rigidbody:
   m_ObjectHideFlags: 0

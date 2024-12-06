@@ -83,9 +83,11 @@ public class SC_ChickenBomb : MonoBehaviour
     // OnTouching enemy kill
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Player")
         {
             OnTochingEnemy();
+            collision.rigidbody.AddForce(0, 300, 0, ForceMode.Impulse);
+            collision.gameObject.SetActive(false);
         }
     }
 
@@ -141,13 +143,20 @@ public class SC_ChickenBomb : MonoBehaviour
         {
             GameObject enemy = detectedEnemies[i];
 
-            // distance beteen the chieken and enemy
-            float distance = Vector3.Distance(transform.position, enemy.transform.position);
-            // Check if the enemy is outside the detection radius
-            if (distance > sphereRadius)
+            if (enemy != null)
             {
-                detectedEnemies.RemoveAt(i);
-                Debug.Log("Enemy removed: " + enemy.name);
+                // distance beteen the chieken and enemy
+                float distance = Vector3.Distance(transform.position, enemy.transform.position);
+                // Check if the enemy is outside the detection radius
+                if (distance > sphereRadius)
+                {
+                    detectedEnemies.RemoveAt(i);
+                    Debug.Log("Enemy removed: " + enemy.name);
+                }
+            }
+            else
+            {
+                return;
             }
         }
     }

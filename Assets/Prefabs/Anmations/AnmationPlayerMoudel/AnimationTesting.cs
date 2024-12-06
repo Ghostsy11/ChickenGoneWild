@@ -14,6 +14,10 @@ public class AnimationTesting : MonoBehaviour
     [SerializeField] SC_AxeRotation weaponTarget;
     [SerializeField] private List<GameObject> childrenList = new List<GameObject>(); // List to store children
 
+    [SerializeField] GetFirstChild refchild;
+
+
+
     [SerializeField] GameObject weapon;
 
     [SerializeField] const string Walking = "Walking";
@@ -31,6 +35,10 @@ public class AnimationTesting : MonoBehaviour
         axe = GetComponent<PlayerAttackState>();
 
         //weapon = axe.weaponSort;
+
+    }
+    private void Update()
+    {
 
     }
 
@@ -63,25 +71,46 @@ public class AnimationTesting : MonoBehaviour
         Debug.Log("2");
         if (context.performed)
         {
-        if (axe.playerAttackState == PlayerAttackState.AttackState.Thorwable)
-        {
-            InvokeAxeThrowerer();
+            if (axe.playerAttackState == PlayerAttackState.AttackState.Thorwable)
+            {
+                InvokeAxeThrowerer();
+
+            }
+            if (axe.playerAttackState == PlayerAttackState.AttackState.Sowrd)
+            {
+                ThrowingRightSideAxe();
+                SwordHit();
+            }
+            if (axe.playerAttackState == PlayerAttackState.AttackState.Axe)
+            {
+                HitSowrdAnimation();
+                AxeeHit();
+            }
         }
-        if (axe.playerAttackState == PlayerAttackState.AttackState.Sowrd)
+    }
+    public void CallAxeBack(InputAction.CallbackContext context)
+    {
+        if (context.performed)
         {
-            ThrowingRightSideAxe();
-            SwordHit();
+            if (axe.playerAttackState == PlayerAttackState.AttackState.Thorwable)
+            {
+                Debug.Log("........................................");
+                refchild.BoolEnabler();
+            }
         }
-        if (axe.playerAttackState == PlayerAttackState.AttackState.Axe)
+    }
+
+    public void ReturningTheFkingAxe(InputAction.CallbackContext context)
+    {
+        if (context.performed)
         {
-            HitSowrdAnimation();
-            AxeeHit();
-        }
+            Debug.Log("Adding function bool here");
+
         }
     }
     public void InvokeWalkingAnimation()
     {
-        animator.SetTrigger(Walking );
+        animator.SetTrigger(Walking);
     }
     //public void NotInvokingWalkingAnimation()
     //{

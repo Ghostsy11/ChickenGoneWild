@@ -6,20 +6,28 @@ public class SC_AxeRotation : MonoBehaviour
 {
     [Header("Genreal Settings")]
     [SerializeField] bool axeThrowenCheck;
-    [SerializeField] bool returingAxe;
+    public bool returingAxe;
     [SerializeField] bool DoubleCheck;
     [SerializeField] float rotationAxeSpeed;
     [SerializeField] float RotationSpeedWhenItComesBack;
     [SerializeField] float forceOnXOrRedLineAxisRight;
     [SerializeField] float forceUpOnGreenLineaAxis;
+    [SerializeField] SC_ActionOnTime timerTeGetAxeBackAfter;
+
 
     [Header("Set Up")]
     [SerializeField] Rigidbody rb;
     [SerializeField] Transform curvPoint, targetPlayerHand;
     [SerializeField] Vector3 oldAxePos;
     [SerializeField] float time = 0.0f;
-    private bool returingAxeEnabled = false;
 
+    [SerializeField] GameObject boolCheck;
+    [SerializeField] float ItsTimeComBack;
+
+    private void Start()
+    {
+        timerTeGetAxeBackAfter = gameObject.GetComponent<SC_ActionOnTime>();
+    }
     void Update()
     {
         //rotate2();
@@ -31,15 +39,14 @@ public class SC_AxeRotation : MonoBehaviour
 
             ApplyForceXAxis();
         }
-        if (returingAxeEnabled)
-        {
-            ReturnAxeEnabler();
-        }
         ReturingAxe();
 
     }
 
-
+    public void GetITT()
+    {
+        timerTeGetAxeBackAfter.SetTimer(ItsTimeComBack, () => returingAxe = true);
+    }
 
     private void ApplyForceXAxis()
     {
@@ -128,19 +135,19 @@ public class SC_AxeRotation : MonoBehaviour
     {
         DoubleCheck = true;
         axeThrowenCheck = true;
-
+        GetITT();
 
     }
 
-    public void ReturnAxeEnabler()
-    {
-            axeThrowenCheck = false;
-            DoubleCheck = true;
-            returingAxe = true;
-    }
-    public void ReturnAxeBoolEnabler()
-    {
-        returingAxeEnabled = true;
-    }
+    //public void ReturnAxeEnabler()
+    //{
+    //    axeThrowenCheck = false;
+    //    DoubleCheck = true;
+    //    returingAxe = true;
+    //}
+    //public void ReturnAxeBoolEnabler()
+    //{
+    //    returingAxeEnabled = true;
+    //}
 
 }

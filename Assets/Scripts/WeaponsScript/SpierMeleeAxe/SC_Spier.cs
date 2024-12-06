@@ -32,13 +32,13 @@ public class SC_Spier : MonoBehaviour
 
     private void ApplyForceToTheRightSide(Rigidbody rb)
     {
-        rb.AddForce(10, force, 0, ForceMode.Impulse);
+        rb.AddForce(Pushforce, force, 0, ForceMode.Impulse);
 
     }
 
     private void ApplyForceToTheLeftSide(Rigidbody rb)
     {
-        rb.AddForce(-10, force, 0, ForceMode.Impulse);
+        rb.AddForce(-Pushforce, force, 0, ForceMode.Impulse);
 
     }
 
@@ -47,7 +47,7 @@ public class SC_Spier : MonoBehaviour
         if (spierIsThrowns == false)
         {
             spierIsThrowns = true;
-            var spier1 = Instantiate(spier, spierPos);
+            var spier1 = Instantiate(spier, spierPos.position, Quaternion.Euler(0f, 0f, -90f));
             spier1.transform.parent = null;
 
             ApplyForceToTheRightSide(spier1.GetComponent<Rigidbody>());

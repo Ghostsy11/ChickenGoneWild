@@ -9,6 +9,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 703589184293996779, guid: 56769ec150afd1c4b8c43de16c4cf252, type: 3}
+      propertyPath: force
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 703589184293996779, guid: 56769ec150afd1c4b8c43de16c4cf252, type: 3}
       propertyPath: spier
       value: 
       objectReference: {fileID: 5592106219457594979, guid: 2444342d9a95719408438acbb7b3ed26, type: 3}
@@ -16,6 +20,10 @@ PrefabInstance:
       propertyPath: spierPos
       value: 
       objectReference: {fileID: 2202270524049375127}
+    - target: {fileID: 703589184293996779, guid: 56769ec150afd1c4b8c43de16c4cf252, type: 3}
+      propertyPath: Pushforce
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1210044702355181063, guid: 56769ec150afd1c4b8c43de16c4cf252, type: 3}
       propertyPath: m_Name
       value: SpierThrower(Ready) Variant

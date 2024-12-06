@@ -46,9 +46,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Callback"",
+                    ""name"": ""CallAxeBack"",
                     ""type"": ""Button"",
-                    ""id"": ""f12d7732-23e4-403a-9f7e-0f87f64f725d"",
+                    ""id"": ""20c16762-16ed-4cd7-8c46-db9ec50df304"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -252,45 +252,34 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""a3003067-886e-4812-a2b0-f64be35f8e46"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""id"": ""6cfefe11-a0f6-4e83-a168-5ffa56422ee8"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Callback"",
+                    ""action"": ""CallAxeBack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""87b24919-07b1-4703-9b25-1bb4ab40ef87"",
-                    ""path"": ""<Keyboard>/f"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Callback"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3054931a-87d6-4435-835f-7549e5037264"",
-                    ""path"": ""<Keyboard>/enter"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Callback"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5ce1e826-3eea-4923-b7ef-6e7ea1f5d56a"",
+                    ""id"": ""07f05f44-8142-4b03-bda9-de8dd5433b1a"",
                     ""path"": ""<Joystick>/trigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Joystick"",
-                    ""action"": ""Callback"",
+                    ""action"": ""CallAxeBack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""98a075bb-565c-4829-b9cc-9983ebeea93e"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""CallAxeBack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1151,7 +1140,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
-        m_Player_Callback = m_Player.FindAction("Callback", throwIfNotFound: true);
+        m_Player_CallAxeBack = m_Player.FindAction("CallAxeBack", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         // PlayerCustomization
@@ -1244,7 +1233,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Attack;
-    private readonly InputAction m_Player_Callback;
+    private readonly InputAction m_Player_CallAxeBack;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Pause;
     public struct PlayerActions
@@ -1253,7 +1242,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
-        public InputAction @Callback => m_Wrapper.m_Player_Callback;
+        public InputAction @CallAxeBack => m_Wrapper.m_Player_CallAxeBack;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -1271,9 +1260,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Attack.started += instance.OnAttack;
             @Attack.performed += instance.OnAttack;
             @Attack.canceled += instance.OnAttack;
-            @Callback.started += instance.OnCallback;
-            @Callback.performed += instance.OnCallback;
-            @Callback.canceled += instance.OnCallback;
+            @CallAxeBack.started += instance.OnCallAxeBack;
+            @CallAxeBack.performed += instance.OnCallAxeBack;
+            @CallAxeBack.canceled += instance.OnCallAxeBack;
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
@@ -1290,9 +1279,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Attack.started -= instance.OnAttack;
             @Attack.performed -= instance.OnAttack;
             @Attack.canceled -= instance.OnAttack;
-            @Callback.started -= instance.OnCallback;
-            @Callback.performed -= instance.OnCallback;
-            @Callback.canceled -= instance.OnCallback;
+            @CallAxeBack.started -= instance.OnCallAxeBack;
+            @CallAxeBack.performed -= instance.OnCallAxeBack;
+            @CallAxeBack.canceled -= instance.OnCallAxeBack;
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
@@ -1569,7 +1558,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
-        void OnCallback(InputAction.CallbackContext context);
+        void OnCallAxeBack(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
     }
